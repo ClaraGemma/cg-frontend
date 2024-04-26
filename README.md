@@ -30,4 +30,4 @@ npm install
 Após instalar as dependências, você pode executar o projeto localmente:
 npm run dev
 
-Isso iniciará o servidor de desenvolvimento. Abra [http://localhost:3000](http://localhost:3000) no seu navegador para visualizar o aplicativo.
+Isso iniciará o servidor de desenvolvimento. Abra [http://localhost:3000](http://localhost:3000) no seu navegador para visualizar o aplicativo....
