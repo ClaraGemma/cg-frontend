@@ -5,6 +5,8 @@ import Produtos from "./pages/Products/Products";
 import Noticias from "./pages/News/News";
 import Empresa from "./pages/Company/Company";
 
+import "./App.css";
+
 function App() {
   return (
     <BrowserRouter>

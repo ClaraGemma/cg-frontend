@@ -1,44 +1,43 @@
 import { Link, useLocation } from "react-router-dom";
-
-import "./style.css";
+import { Container, List, Item } from "./styles";
 
 function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="navbar">
-      <ul className="list">
-        <li className="item">
+    <Container>
+      <List>
+        <Item>
           <Link to={"/"} className={location.pathname === "/" ? "active" : ""}>
             Home
           </Link>
-        </li>
-        <li className="item">
+        </Item>
+        <Item>
           <Link
             to={"/produto"}
             className={location.pathname === "/produto" ? "active" : ""}
           >
             Produtos
           </Link>
-        </li>
-        <li className="item">
+        </Item>
+        <Item>
           <Link
             to={"/noticia"}
             className={location.pathname === "/noticia" ? "active" : ""}
           >
             Notícias
           </Link>
-        </li>
-        <li className="item">
+        </Item>
+        <Item>
           <Link
             to={"/empresa"}
             className={location.pathname === "/empresa" ? "active" : ""}
           >
             Empresa
           </Link>
-        </li>
-      </ul>
-    </nav>
+        </Item>
+      </List>
+    </Container>
   );
 }
 
