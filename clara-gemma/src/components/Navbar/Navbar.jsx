@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Container, List, Item } from "./styles";
+import logo from "../../assets/testlogo.png";
 
 function Navbar() {
   const location = useLocation();
@@ -7,8 +8,12 @@ function Navbar() {
   return (
     <Container>
       <List>
+        <Item className="logo1">
+          <Link to = {"/"} >        
+          <img src={logo} alt="Cost" /></Link>
+        </Item>
         <Item>
-          <Link to={"/"} className={location.pathname === "/" ? "active" : ""}>
+          <Link to={"/home"} className={location.pathname === "/home" ? "active" : ""}>
             Home
           </Link>
         </Item>
@@ -42,3 +47,5 @@ function Navbar() {
 }
 
 export default Navbar;
+
+

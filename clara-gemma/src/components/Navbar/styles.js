@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   background-color: var(--primary-color);
   padding: 2em;
 `;
