@@ -10,7 +10,7 @@ Este projeto é um website informativo destinado a fornecer conteúdo relevante 
 
 - **Vite**: Vite é um construtor de aplicativos web rápido que visa fornecer uma experiência de desenvolvimento rápida e moderna. Ele utiliza a capacidade de suporte nativo de módulos do navegador para construir rapidamente seu aplicativo.
 - **React**: React é uma biblioteca JavaScript para construir interfaces de usuário. É eficiente e flexível, permitindo o desenvolvimento de componentes reutilizáveis e de fácil manutenção.
-- **React Router**: Utilizado para lidar com a navegação dentro do aplicativo, permitindo a criação de rotas para diferentes páginas.
+- **React Router**: Utilizado para lidar com a navegação dentro do aplicativo, permitindo a criação de rotas para diferentes  páginas.
 
 ## Instalação
 
@@ -19,11 +19,15 @@ Certifique-se de ter o Node.js instalado em sua máquina.
 1. Clone este repositório:
    git clone https://github.com/seu-usuario/nome-do-repositorio.git
 
-3. Navegue até o diretório do projeto:
+2. Navegue até o diretório do projeto:
    cd nome-do-repositorio
 
 3. Instale as dependências:
-npm install
+   npm install
+
+4. Instale o Vite localmente no seu projeto: 
+   npm install vite --save-dev
+
 
 ## Como Executar
 
