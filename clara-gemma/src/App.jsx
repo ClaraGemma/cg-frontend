@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Produtos from "./pages/Products/Products";
 import Noticias from "./pages/News/News";
 import Empresa from "./pages/Company/Company";
+import maps from './components/Map/Map';
 
 import "./App.css";
 
