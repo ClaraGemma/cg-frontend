@@ -10,8 +10,8 @@
 
 /* Colors */
 :root {
-  --primary-color: #222;
-  --secondary-color: #6c757d;
+  --primary-background-color: #222222;
+  --primary-text-color: #eeeeee;
   --success-color: #28a745;
   --danger-color: #dc3545;
   --warning-color: #ffc107;

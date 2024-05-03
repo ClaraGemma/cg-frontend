@@ -1,19 +1,28 @@
 import { Link, useLocation } from "react-router-dom";
-import { Container, List, Item } from "./styles";
+import PropTypes from "prop-types";
+import { Container, List, Item, Logo, Name, More } from "./styles";
 import logo from "../../assets/testlogo.png";
+import { FaBars } from "react-icons/fa";
 
-function Navbar() {
+function Navbar({ setMenuIsVisible }) {
   const location = useLocation();
 
   return (
     <Container>
       <List>
-        <Item className="logo1">
-          <Link to = {"/"} >        
-          <img src={logo} alt="Cost" /></Link>
-        </Item>
+        <Logo className="logo1">
+          <Link to={"/home"}>
+            <img src={logo} alt="Cost" />
+          </Link>
+        </Logo>
+        <Name>
+          <Link to={"/home"}>Clara && Gemma</Link>
+        </Name>
         <Item>
-          <Link to={"/home"} className={location.pathname === "/home" ? "active" : ""}>
+          <Link
+            to={"/home"}
+            className={location.pathname === "/home" ? "active" : ""}
+          >
             Home
           </Link>
         </Item>
@@ -41,11 +50,16 @@ function Navbar() {
             Empresa
           </Link>
         </Item>
+        <More>
+          <FaBars onClick={() => setMenuIsVisible(true)} />
+        </More>
       </List>
     </Container>
   );
 }
 
+Navbar.propTypes = {
+  setMenuIsVisible: PropTypes.func.isRequired,
+};
+
 export default Navbar;
-
-
