@@ -1,4 +1,5 @@
-// import Mapa from '../Mapa/Mapa';
+import Mapa from "../Mapa/Mapa";
+import logo from "../../assets/testlogo.png";
 import "./style.css"; // dps matheus vai atualizar o import do css
 
 function Footer() {
@@ -10,11 +11,13 @@ function Footer() {
             Copyright Clara-Gemma - 2024. Todos os direitos reservados.
           </p>
         </div>
+        <div id="mapa"> 
+               <Mapa />
+        </div>
         <div>
-          <img src="ccaminho do logo" alt="Logo" className="footer-logo" />
+          <img src={logo} alt="Logo" className="footer-logo" />
         </div>
       </div>
-      {/* <Mapa></Mapa> */}
     </footer>
   );
 }
