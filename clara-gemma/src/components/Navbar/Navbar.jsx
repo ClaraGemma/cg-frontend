@@ -16,7 +16,7 @@ function Navbar({ setMenuIsVisible }) {
           </Link>
         </Logo>
         <Name>
-          <Link to={"/home"}>Clara && Gemma</Link>
+          <Link to={"/home"}>CLARA && GEMMA</Link>
         </Name>
         <Item>
           <Link
