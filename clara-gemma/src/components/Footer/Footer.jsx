@@ -1,24 +1,36 @@
 import Mapa from "../Mapa/Mapa";
-import logo from "../../assets/testlogo.png";
-import "./style.css"; // dps matheus vai atualizar o import do css
+import whatsapp from "../../assets/whatsapp.svg";
+import instagram from "../../assets/instagram.svg";
+import gmail from "../../assets/gmail.svg";
+import { Container, List, ContactUs, Contact, Copyright } from "./styles";
 
 function Footer() {
   return (
-    <footer className="footer-container">
-      <div className="footer-content">
-        <div>
-          <p className="copyright-text">
-            Copyright Clara-Gemma - 2024. Todos os direitos reservados.
-          </p>
+    <Container>
+      <List>
+        <ContactUs>
+          <h1>Entre em Contato Conosco!</h1>
+          <Contact>
+            <img src={whatsapp}></img>
+            <p>(99) 99999-9999</p>
+          </Contact>
+          <Contact>
+            <img src={instagram}></img>
+            <p>claraegemm@</p>
+          </Contact>
+          <Contact>
+            <img src={gmail}></img>
+            <p>email@email.com</p>
+          </Contact>
+        </ContactUs>
+        <div id="mapa">
+          <Mapa />
         </div>
-        <div id="mapa"> 
-               <Mapa />
-        </div>
-        <div>
-          <img src={logo} alt="Logo" className="footer-logo" />
-        </div>
-      </div>
-    </footer>
+      </List>
+      <Copyright>
+        <p>Todos os direitos reservados Clara && Gema Arte e Resina 2024</p>
+      </Copyright>
+    </Container>
   );
 }
 

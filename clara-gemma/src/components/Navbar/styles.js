@@ -5,6 +5,10 @@ export const Container = styled.div`
   justify-content: space-between;
   background-color: var(--primary-background-color);
   padding: 2em;
+  position: fixed; /* Fixa a navbar */
+  width: 100%; /* Faz a navbar ocupar toda a largura da tela */
+  top: 0; /* Posiciona a navbar no topo da janela de visualização */
+  z-index: 1000; /* Define a ordem de empilhamento */
 `;
 
 export const List = styled.ul`
