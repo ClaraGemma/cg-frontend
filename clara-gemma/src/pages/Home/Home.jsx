@@ -46,7 +46,7 @@ function Home() {
         <Box02>
           <img src={img_02} alt="Exemplo de resina em trabalho concluído" />
           <TextContainer>
-            <h1>Resina Epoxí?</h1>
+            <h1>Resina Epoxí?testestes</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
