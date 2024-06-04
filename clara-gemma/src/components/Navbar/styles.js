@@ -1,67 +1,50 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
   background-color: var(--primary-background-color);
   padding: 2em;
-  position: fixed; /* Fixa a navbar */
-  width: 100%; /* Faz a navbar ocupar toda a largura da tela */
-  top: 0; /* Posiciona a navbar no topo da janela de visualização */
-  z-index: 1000; /* Define a ordem de empilhamento */
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
 `;
 
 export const List = styled.ul`
   display: flex;
   list-style: none;
   align-items: center;
+  justify-content: space-between;
 `;
 
 export const Logo = styled.li`
-  padding-right: 2em;
-
-  @media (max-width: 768px) {
+  @media (max-width: 906px) {
     padding-right: 0;
   }
 `;
 
-export const Name = styled.li`
-  padding-right: 5em;
-
-  & a {
-    color: var(--primary-text-color);
-    text-decoration: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 24px;
-    letter-spacing: 5px;
-  }
-
-  & a:hover {
-    font-weight: 400;
-    transition: 0.1s;
-  }
+export const Box = styled.div`
+  display: flex;
+  gap: 10em;
+  justify-content: center;
+  flex: 1;
+  padding-right: 8%;
 `;
 
 export const Item = styled.li`
-  padding-right: 5em;
-
   & a {
     color: var(--primary-text-color);
     text-decoration: none;
     font-family: "Poppins", sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     font-style: normal;
     font-size: 22px;
   }
 
   & a:hover {
     font-weight: 300;
-    transition: 0.1s;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 906px) {
     display: none;
   }
 `;
@@ -69,11 +52,11 @@ export const Item = styled.li`
 export const More = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 906px) {
     display: flex;
     position: absolute;
     right: 30px;
-    color: #fff;
+    color: #222;
     font-size: 24px;
     cursor: pointer;
   }

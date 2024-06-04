@@ -14,8 +14,8 @@ export const Banner = styled.div`
   align-items: center;
 
   h1 {
-    color: var(--primary-text-color);
-    font-family: "Poppins", sans-serif;
+    color: var(--second-text-color);
+    font-family: "Livvic", sans-serif;
     font-weight: 500;
     font-style: normal;
     font-size: 50px;
@@ -23,8 +23,8 @@ export const Banner = styled.div`
   }
 
   h2 {
-    color: var(--primary-text-color);
-    font-family: "Poppins", sans-serif;
+    color: var(--second-text-color);
+    font-family: "Livvic", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 42px;
@@ -35,45 +35,13 @@ export const Banner = styled.div`
 export const Box01 = styled.div`
   display: flex;
   justify-content: center;
-  padding: 10em 10em;
-
-  img {
-    border-radius: 5px;
-    width: 15%;
-  }
-`;
-
-export const TextContainer = styled.div`
-  font-family: "Poppins", sans-serif;
-  font-style: normal;
-  width: 50%;
-
-  h1 {
-    color: var(--second-text-color);
-    font-weight: 500;
-    font-size: 24px;
-    margin-bottom: 2em;
-  }
-
-  p {
-    color: var(--second-text-color);
-    font-weight: 400;
-    font-size: 20px;
-    width: 90%;
-    word-wrap: break-word;
-  }
+  padding: 10em;
 `;
 
 export const Box02 = styled.div`
-  background-color: gray;
   display: flex;
   justify-content: center;
-  padding: 10em 10em;
-
-  img {
-    border-radius: 5px;
-    width: 15%;
-  }
+  padding: 10em;
 
   h1,
   p {
@@ -83,7 +51,42 @@ export const Box02 = styled.div`
 `;
 
 export const Box03 = styled.div`
+  // background-color: green;
   display: flex;
-  justify-content: center;
-  gap: 10em;
+  flex-direction: column;
+  padding: 10em 10em;
+  align-items: center;
+
+  div {
+    display: flex;
+    justify-content: center;
+    gap: 6em;
+    // background-color: gray;
+  }
+`;
+
+export const TextContainer = styled.div`
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  width: 50%;
+
+  h1 {
+    color: var(--primary-text-color);
+    font-weight: 500;
+    font-size: 24px;
+    margin-bottom: 2em;
+  }
+
+  p {
+    color: var(--primary-text-color);
+    font-weight: 400;
+    font-size: 20px;
+    width: 90%;
+    word-wrap: break-word;
+  }
+`;
+
+export const Image = styled.img`
+  border-radius: 5px;
+  width: 232px;
 `;
