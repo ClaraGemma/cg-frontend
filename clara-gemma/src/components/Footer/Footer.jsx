@@ -28,7 +28,7 @@ function Footer() {
         </div>
       </List>
       <Copyright>
-        <p>Todos os direitos reservados Clara && Gema Arte e Resina 2024</p>
+        <p>Todos os direitos reservados Clara & Gema 2024</p>
       </Copyright>
     </Container>
   );

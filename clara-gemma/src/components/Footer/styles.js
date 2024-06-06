@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--primary-background-color);
-  padding: 10em 15em 0.1em 15em;
+  background-color: var(--second-background-color);
 `;
 
 export const List = styled.ul`
@@ -11,11 +10,12 @@ export const List = styled.ul`
   align-items: center;
   list-style: none;
   height: 100%;
+  padding: 10em 20em;
 `;
 
 export const ContactUs = styled.li`
   h1 {
-    color: var(--primary-text-color);
+    color: var(--second-text-color);
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -35,7 +35,7 @@ export const Contact = styled.div`
   }
 
   p {
-    color: var(--primary-text-color);
+    color: var(--second-text-color);
     font-family: "Poppins", sans-serif;
     font-weight: 200;
     font-style: normal;
@@ -44,10 +44,10 @@ export const Contact = styled.div`
   }
 `;
 
-export const Mapa = styled.div``;
-
 export const Copyright = styled.li`
   text-align: center;
-  color: var(--primary-text-color);
+  color: var(--second-text-color);
+  font-family: "Livvic", sans-serif;
   list-style: none;
+  padding-bottom: 5px;
 `;
