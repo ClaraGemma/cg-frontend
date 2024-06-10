@@ -13,7 +13,27 @@ function Empresa() {
         setMenuIsVisible={setMenuIsVisible}
       />
       <Navbar setMenuIsVisible={setMenuIsVisible} />
-      <h1>historia</h1>
+      <div className="oloko">
+        <h1>Quem somos</h1>
+        <hr />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
+
+      <div className="">
+        <h1>Motivação</h1>
+        <hr />
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+      </div>
       <Footer />
     </>
   );
