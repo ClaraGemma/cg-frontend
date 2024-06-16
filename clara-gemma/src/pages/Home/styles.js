@@ -51,7 +51,6 @@ export const Box02 = styled.div`
 `;
 
 export const Box03 = styled.div`
-  // background-color: green;
   display: flex;
   flex-direction: column;
   padding: 10em 10em;
@@ -61,7 +60,6 @@ export const Box03 = styled.div`
     display: flex;
     justify-content: center;
     gap: 6em;
-    // background-color: gray;
   }
 `;
 

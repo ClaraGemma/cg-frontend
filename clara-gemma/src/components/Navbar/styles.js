@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--primary-background-color);
   padding: 2em;
-  position: fixed;
+  // position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
