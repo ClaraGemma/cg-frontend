@@ -33,7 +33,7 @@ export const Logo = styled.li`
 
 export const StyledIoExit = styled(IoExit)`
   font-size: 25px;
-  color: var(--danger-color);
+  color: var(--exit-color);
 `;
 
 export const BoxPanel = styled.div`
