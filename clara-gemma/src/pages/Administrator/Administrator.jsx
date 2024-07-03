@@ -8,9 +8,11 @@ import {
   StyledIoAddCircle,
   StyledIoExit,
 } from "./styles.js";
-import logo from "../../assets/logo_navbar.svg";
-import Modal from "../../components/Modal/Modal.jsx";
 import { useState } from "react";
+import logo from "../../assets/logo_navbar.svg";
+import ModalBase from "../../components/Modals/ModalBase/ModalBase.jsx";
+import CreatePost from "../../components/Modals/CreatePost/CreatePost.jsx";
+import CreateProduct from "../../components/Modals/CreateProduct/CreateProduct.jsx";
 
 function Administrator() {
   const [openModal, setOpenModal] = useState(false);
@@ -37,9 +39,12 @@ function Administrator() {
           <p>Nova Postagem</p>
           <StyledIoAddCircle />
         </Button>
-        <Modal isOpen={openModal} setOpenModal={() => setOpenModal(!openModal)}>
-          <p>eu sou post</p>
-        </Modal>
+        <ModalBase
+          isOpen={openModal}
+          setOpenModal={() => setOpenModal(!openModal)}
+        >
+          <CreatePost></CreatePost>
+        </ModalBase>
       </BoxPanel>
 
       <BoxPanel>
@@ -48,12 +53,12 @@ function Administrator() {
           <p>Novo Produto</p>
           <StyledIoAddCircle />
         </Button>
-        <Modal
+        <ModalBase
           isOpen={openModalPr}
           setOpenModalPr={() => setOpenModalPr(!openModalPr)}
         >
-          <p>eu sou produto</p>
-        </Modal>
+          <CreateProduct></CreateProduct>
+        </ModalBase>
       </BoxPanel>
     </Container>
   );

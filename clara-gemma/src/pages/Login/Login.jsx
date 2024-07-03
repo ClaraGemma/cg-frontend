@@ -10,7 +10,6 @@ import {
   ForgetPassword,
   Button,
 } from "./styles.js";
-import "./styles.js";
 
 function Login() {
   const [username, setUsername] = useState("");

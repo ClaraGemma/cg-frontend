@@ -1,6 +1,6 @@
-import { Container, ModalContent, CloseButton } from "./styles.js";
+import { Container, ModalContent, CloseButton } from "./styles";
 // eslint-disable-next-line react/prop-types
-export default function Modal({
+export default function ModalBase({
   isOpen,
   children,
   setOpenModal,

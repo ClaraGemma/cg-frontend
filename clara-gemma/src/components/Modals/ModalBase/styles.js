@@ -16,18 +16,19 @@ export const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 150px;
+  width: 50%;
+  height: 70%;
+  align-items: center;
   background-color: var(--primary-background-color);
   border-radius: 10px;
-  color: var(--primary-text-color);
 `;
 
 export const CloseButton = styled(IoIosClose)`
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 20px;
   cursor: pointer;
-  font-size: 2em;
+  font-size: 2.5em;
   transition: 0.3s;
 
   &: hover {
