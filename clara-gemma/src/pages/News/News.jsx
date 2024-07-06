@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
+import PostItem from "../../components/PostItem/PostItem";
 import Footer from "../../components/Footer/Footer";
 
 function Noticias() {
@@ -14,7 +15,7 @@ function Noticias() {
       />
       <Navbar setMenuIsVisible={setMenuIsVisible} />
 
-      <h1>postagens</h1>
+      <PostItem></PostItem>
       <Footer />
     </>
   );

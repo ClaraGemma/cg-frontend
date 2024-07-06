@@ -43,7 +43,7 @@ function Administrator() {
           isOpen={openModal}
           setOpenModal={() => setOpenModal(!openModal)}
         >
-          <CreatePost></CreatePost>
+          <CreatePost />
         </ModalBase>
       </BoxPanel>
 
@@ -57,7 +57,7 @@ function Administrator() {
           isOpen={openModalPr}
           setOpenModalPr={() => setOpenModalPr(!openModalPr)}
         >
-          <CreateProduct></CreateProduct>
+          <CreateProduct />
         </ModalBase>
       </BoxPanel>
     </Container>

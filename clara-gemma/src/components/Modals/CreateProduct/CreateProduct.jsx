@@ -1,24 +1,66 @@
+import { useState, useRef } from "react";
+import {
+  Container,
+  Form,
+  InputField,
+  Input,
+  TextArea,
+  ImageWrapper,
+  Image,
+  FileInputLabel,
+  CloseButton,
+  Button,
+} from "./styles.js";
+
 function CreateProduct() {
+  const [selectedImage, setSelectedImage] = useState();
+  const fileInputRef = useRef();
+
+  const handleImageRemove = () => {
+    setSelectedImage(undefined);
+    fileInputRef.current.value = null;
+  };
+
   return (
-    <>
-      <form>
+    <Container>
+      <Form>
         <h1>Novo produto</h1>
-        <div>
-          <input type="text" placeholder="Título" required />
-        </div>
+        <InputField>
+          <Input type="text" placeholder="Produto" required />
+        </InputField>
 
-        <div>
-          <textarea placeholder="Descrição" required />
-        </div>
+        <InputField>
+          <TextArea placeholder="Descrição" required />
+        </InputField>
 
-        <div>
-          <input type="file" id="image" name="image" accept="image/*" />
-        </div>
+        <InputField>
+          <Input
+            type="file"
+            id="image"
+            name="image"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              setSelectedImage(file ? URL.createObjectURL(file) : undefined);
+            }}
+            hidden
+          />
+          <FileInputLabel htmlFor="image">Adicionar imagem</FileInputLabel>
+        </InputField>
 
-        <button>Confirmar</button>
-        <button>Cancelar</button>
-      </form>
-    </>
+        {selectedImage && (
+          <ImageWrapper>
+            <Image src={selectedImage} />
+            <CloseButton onClick={handleImageRemove}>
+              Remover imagem
+            </CloseButton>
+          </ImageWrapper>
+        )}
+
+        <Button>Adicionar</Button>
+      </Form>
+    </Container>
   );
 }
 
