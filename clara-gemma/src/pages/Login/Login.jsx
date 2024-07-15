@@ -1,56 +1,58 @@
-// import { FaUser, FaLock } from "react-icons/fa";
-import { useState } from "react";
+import { Formik } from "formik";
+import * as yup from "yup";
+
 import {
   Container,
-  Form,
-  InputField,
-  Input,
+  StyledForm,
+  LoginFormGroup,
+  StyledField,
   StyledFaUser,
   StyledFaLock,
-  ForgetPassword,
   Button,
+  StyledErrorMessage,
 } from "./styles.js";
 
 function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const handleClickLogin = (values) => console.log(values);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(username, password);
-    console.log("Envio");
-  };
+  const validationLogin = yup.object().shape({
+    email: yup
+      .string()
+      .email("Não é um email")
+      .required("Este campo é obrigatório!"),
+    password: yup
+      .string()
+      .min(8, "A senha deve ter no mínimo 8 caracteres!")
+      .required("Este campo é obrigatório!"),
+  });
 
   return (
     <Container>
-      <Form onSubmit={handleSubmit}>
-        <h1>Admin Login</h1>
-        <p>Use o email e senha disponibilizados.</p>
-        <InputField>
-          <Input
-            type="email"
-            placeholder="E-mail"
-            required
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <StyledFaUser className="icon" />
-        </InputField>
-        <InputField>
-          <Input
-            type="password"
-            placeholder="Senha"
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <StyledFaLock className="icon" />
-        </InputField>
-        <ForgetPassword>
-          <a href="#">Esqueceu a senha?</a>
-        </ForgetPassword>
+      <Formik
+        initialValues={{}}
+        onSubmit={handleClickLogin}
+        validationSchema={validationLogin}
+      >
+        <StyledForm>
+          <h1>Admin Login</h1>
+          <p>Use o email e senha disponibilizados.</p>
+          <LoginFormGroup>
+            <StyledField name="email" placeholder="E-mail" />
+            <StyledFaUser />
 
-        <Button>Entrar</Button>
-      </Form>
+            <StyledErrorMessage component="span" name="email" />
+          </LoginFormGroup>
+
+          <LoginFormGroup>
+            <StyledField name="password" type="password" placeholder="Senha" />
+            <StyledFaLock />
+
+            <StyledErrorMessage component="span" name="password" />
+          </LoginFormGroup>
+
+          <Button type="submit">Entrar</Button>
+        </StyledForm>
+      </Formik>
     </Container>
   );
 }

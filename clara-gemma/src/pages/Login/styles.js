@@ -1,3 +1,4 @@
+import { ErrorMessage, Field, Form } from "formik";
 import { FaLock, FaUser } from "react-icons/fa";
 import styled from "styled-components";
 
@@ -9,7 +10,7 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const Form = styled.form`
+export const StyledForm = styled(Form)`
   width: 450px;
   background-color: #f0f0f0;
   padding: 40px;
@@ -34,14 +35,14 @@ export const Form = styled.form`
   }
 `;
 
-export const InputField = styled.div`
+export const LoginFormGroup = styled.div`
   position: relative;
   width: 100%;
   height: 50px;
   margin: 30px auto;
 `;
 
-export const Input = styled.input`
+export const StyledField = styled(Field)`
   width: 100%;
   height: 100%;
   outline: none;
@@ -83,18 +84,10 @@ export const StyledFaLock = styled(FaLock)`
   }
 `;
 
-export const ForgetPassword = styled.div`
-  font-size: 13px;
-  margin: -15px 0 15px;
-
-  a {
-    color: var(--primary-text-color);
-    font-family: "Poppins", sans-serif;
-    text-decoration: none;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
+export const StyledErrorMessage = styled(ErrorMessage)`
+  color: red;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.button`
