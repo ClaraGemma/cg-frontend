@@ -37,7 +37,7 @@ function Login() {
           <h1>Admin Login</h1>
           <p>Use o email e senha disponibilizados.</p>
           <LoginFormGroup>
-            <StyledField name="email" placeholder="E-mail" />
+            <StyledField name="email" type="text" placeholder="E-mail" />
             <StyledFaUser />
 
             <StyledErrorMessage component="span" name="email" />
