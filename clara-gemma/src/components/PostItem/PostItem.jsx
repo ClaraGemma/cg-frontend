@@ -1,25 +1,50 @@
+import { useEffect, useState } from "react";
+import {
+  Container,
+  Header,
+  TrashDateBox,
+  StyledFaTrash,
+  Description,
+  Image,
+} from "./styles.js";
+import api from "../../services/api";
+
 function PostItem() {
+  const [posts, setPosts] = useState([]);
+
+  async function getPosts() {
+    const postsFromApi = await api.get("/posts");
+
+    setPosts(postsFromApi.data);
+  }
+
+  async function deletePosts(id) {
+    await api.delete(`/posts/${id}`);
+
+    getPosts();
+  }
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <>
-      <div>
-        <h1>Spoiler do que vem por aí!!</h1>
-        <div>10/04/2024 - 17:00h</div>
-      </div>
-      <div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Rhoncus sed non ornare lorem
-          eu erat mauris vitae feugiat. Id commodo sed nisl cursus magna mauris
-          at aliquet. Orci sollicitudin nibh tellus vitae eu risus. Diam
-          porttitor magna egestas a pellentesque eu amet.
-        </p>
-      </div>
-      <div>
-        <img
-          width={"50%"}
-          src="https://picsum.photos/id/9/5000/3269.jpg"
-          alt="Teste Imagem"
-        />
-      </div>
+      {posts.map((post) => (
+        <Container key={post.id}>
+          <Header>
+            <h1>{post.title}</h1>
+            <TrashDateBox>
+              <StyledFaTrash onClick={() => deletePosts(post.id)} />
+              <span>{post.date_time}</span>
+            </TrashDateBox>
+          </Header>
+          <Description>
+            <p>{post.desc}</p>
+          </Description>
+          <Image src={post.image_url} />
+        </Container>
+      ))}
     </>
   );
 }

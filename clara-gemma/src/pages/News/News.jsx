@@ -15,7 +15,7 @@ function Noticias() {
       />
       <Navbar setMenuIsVisible={setMenuIsVisible} />
 
-      <PostItem></PostItem>
+      <PostItem />
       <Footer />
     </>
   );
