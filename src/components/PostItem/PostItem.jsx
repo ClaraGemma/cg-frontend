@@ -14,13 +14,11 @@ function PostItem() {
 
   async function getPosts() {
     const postsFromApi = await api.get("/posts");
-
     setPosts(postsFromApi.data);
   }
 
   async function deletePosts(id) {
     await api.delete(`/posts/${id}`);
-
     getPosts();
   }
 
@@ -36,13 +34,18 @@ function PostItem() {
             <h1>{post.title}</h1>
             <TrashDateBox>
               <StyledFaTrash onClick={() => deletePosts(post.id)} />
-              <span>{post.date_time}</span>
+              <span>{new Date(post.date_time).toLocaleString()}</span>
             </TrashDateBox>
           </Header>
           <Description>
             <p>{post.desc}</p>
           </Description>
-          <Image src={post.image_url} />
+          {post.image_url && (
+            <Image
+              src={`http://localhost:3000${post.image_url}`}
+              alt={post.title}
+            />
+          )}
         </Container>
       ))}
     </>

@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-
 import api from "../../../services/api.js";
 
 import {
@@ -16,24 +15,31 @@ import {
 } from "./styles.js";
 
 function CreatePost() {
-  const [selectedImage, setSelectedImage] = useState();
-
+  const [selectedImage, setSelectedImage] = useState(null);
   const fileInputRef = useRef();
   const inputTitle = useRef();
   const inputDesc = useRef();
   const dateTime = new Date().toISOString();
 
   async function createPosts() {
-    await api.post("/posts", {
-      title: inputTitle.current.value,
-      desc: inputDesc.current.value,
-      image_url: selectedImage,
-      date_time: dateTime,
+    const formData = new FormData();
+    formData.append("title", inputTitle.current.value);
+    formData.append("desc", inputDesc.current.value);
+    formData.append("date_time", dateTime);
+
+    if (fileInputRef.current.files[0]) {
+      formData.append("file", fileInputRef.current.files[0]);
+    }
+
+    await api.post("/posts", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
   }
 
   const handleImageRemove = () => {
-    setSelectedImage(undefined);
+    setSelectedImage(null);
     fileInputRef.current.value = null;
   };
 
@@ -68,7 +74,7 @@ function CreatePost() {
             ref={fileInputRef}
             onChange={(e) => {
               const file = e.target.files?.[0];
-              setSelectedImage(file ? URL.createObjectURL(file) : undefined);
+              setSelectedImage(file ? URL.createObjectURL(file) : null);
             }}
             hidden
           />
