@@ -1,3 +1,11 @@
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useState } from "react";
+import logo from "../../assets/logo_navbar.svg";
+import ModalBase from "../../components/Modals/ModalBase/ModalBase.jsx";
+import CreatePost from "../../components/Modals/CreatePost/CreatePost.jsx";
+import CreateProduct from "../../components/Modals/CreateProduct/CreateProduct.jsx";
+import PostItem from "../../components/PostItem/PostItem";
+
 import {
   Box,
   BoxPanel,
@@ -9,29 +17,29 @@ import {
   StyledIoAddCircle,
   StyledIoExit,
 } from "./styles.js";
-import { useState } from "react";
-import logo from "../../assets/logo_navbar.svg";
-import ModalBase from "../../components/Modals/ModalBase/ModalBase.jsx";
-import CreatePost from "../../components/Modals/CreatePost/CreatePost.jsx";
-import CreateProduct from "../../components/Modals/CreateProduct/CreateProduct.jsx";
-import PostItem from "../../components/PostItem/PostItem";
 
 function Administrator() {
   const [openModal, setOpenModal] = useState(false);
   const [openModalPr, setOpenModalPr] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/admin");
+  };
 
   return (
     <Container>
       <Nav>
         <Box>
           <Logo>
-            <img src={logo} />
+            <img src={logo} alt="Logo" />
           </Logo>
           <h1>Área do Administrador</h1>
         </Box>
         <Box>
           <h1>Olá, Richard</h1>
-          <StyledIoExit />
+          <StyledIoExit onClick={handleLogout} />
         </Box>
       </Nav>
 

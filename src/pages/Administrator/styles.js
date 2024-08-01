@@ -37,7 +37,7 @@ export const StyledIoExit = styled(IoExit)`
 `;
 
 export const BoxPanel = styled.div`
-  background-color: #2e2e2e;
+  background-color: brown;
   padding: 1em 4em;
   margin: 2rem;
   border-radius: 5px;

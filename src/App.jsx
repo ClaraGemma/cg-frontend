@@ -6,6 +6,7 @@ import Noticias from "./pages/News/News";
 import Empresa from "./pages/Company/Company";
 import Login from "./pages/Login/Login";
 import Administrator from "./pages/Administrator/Administrator";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 import "./App.css";
 
@@ -19,8 +20,15 @@ function App() {
         <Route path="/noticia" element={<Noticias />} />
         <Route path="/empresa" element={<Empresa />} />
         <Route path="/admin" element={<Login />} />
-        <Route path="/administrador" element={<Administrator />} />
-        <Route path="*" element={<h1>Not Found mané</h1>} />
+        <Route
+          path="/administrador"
+          element={
+            <PrivateRoute>
+              <Administrator />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<h1>Acho que você digitou errado...</h1>} />
       </Routes>
     </BrowserRouter>
   );

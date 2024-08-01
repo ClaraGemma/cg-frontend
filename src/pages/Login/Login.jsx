@@ -1,5 +1,7 @@
 import { Formik } from "formik";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import api from "../../services/api.js";
 
 import {
   Container,
@@ -13,7 +15,20 @@ import {
 } from "./styles.js";
 
 function Login() {
-  const handleClickLogin = (values) => console.log(values);
+  const navigate = useNavigate();
+
+  const handleClickLogin = async (values) => {
+    try {
+      const response = await api.post("/login", values);
+
+      localStorage.setItem("token", response.data.token);
+
+      navigate("/administrador");
+    } catch (error) {
+      alert("Falha no login: Credenciais inválidas");
+      console.error("Erro de login:", error);
+    }
+  };
 
   const validationLogin = yup.object().shape({
     email: yup
@@ -29,7 +44,7 @@ function Login() {
   return (
     <Container>
       <Formik
-        initialValues={{}}
+        initialValues={{ email: "", password: "" }}
         onSubmit={handleClickLogin}
         validationSchema={validationLogin}
       >
