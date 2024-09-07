@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom"; // Importar useNavigate
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/logo_navbar.svg";
 import ModalBase from "../../components/Modals/ModalBase/ModalBase.jsx";
 import CreatePost from "../../components/Modals/CreatePost/CreatePost.jsx";
 import CreateProduct from "../../components/Modals/CreateProduct/CreateProduct.jsx";
 import PostItem from "../../components/PostItem/PostItem";
+import ProductItem from "../../components/ProductItem/ProductItem";
 
 import {
   Box,
@@ -12,6 +13,7 @@ import {
   Header,
   Button,
   Container,
+  ContainerPanel,
   Logo,
   Nav,
   StyledIoAddCircle,
@@ -42,39 +44,41 @@ function Administrator() {
           <StyledIoExit onClick={handleLogout} />
         </Box>
       </Nav>
+      <ContainerPanel>
+        <BoxPanel>
+          <Header>
+            <h1>Painel de Notícias</h1>
+            <Button onClick={() => setOpenModal(true)}>
+              <p>Nova Postagem</p>
+              <StyledIoAddCircle />
+            </Button>
+            <ModalBase
+              isOpen={openModal}
+              setOpenModal={() => setOpenModal(!openModal)}
+            >
+              <CreatePost />
+            </ModalBase>
+          </Header>
+          <PostItem />
+        </BoxPanel>
 
-      <BoxPanel>
-        <Header>
-          <h1>Painel de Notícias</h1>
-          <Button onClick={() => setOpenModal(true)}>
-            <p>Nova Postagem</p>
-            <StyledIoAddCircle />
-          </Button>
-          <ModalBase
-            isOpen={openModal}
-            setOpenModal={() => setOpenModal(!openModal)}
-          >
-            <CreatePost />
-          </ModalBase>
-        </Header>
-        <PostItem />
-      </BoxPanel>
-
-      <BoxPanel>
-        <Header>
-          <h1>Painel de Produtos</h1>
-          <Button onClick={() => setOpenModalPr(true)}>
-            <p>Novo Produto</p>
-            <StyledIoAddCircle />
-          </Button>
-          <ModalBase
-            isOpen={openModalPr}
-            setOpenModalPr={() => setOpenModalPr(!openModalPr)}
-          >
-            <CreateProduct />
-          </ModalBase>
-        </Header>
-      </BoxPanel>
+        <BoxPanel>
+          <Header>
+            <h1>Painel de Produtos</h1>
+            <Button onClick={() => setOpenModalPr(true)}>
+              <p>Novo Produto</p>
+              <StyledIoAddCircle />
+            </Button>
+            <ModalBase
+              isOpen={openModalPr}
+              setOpenModalPr={() => setOpenModalPr(!openModalPr)}
+            >
+              <CreateProduct />
+            </ModalBase>
+          </Header>
+          <ProductItem />
+        </BoxPanel>
+      </ContainerPanel>
     </Container>
   );
 }

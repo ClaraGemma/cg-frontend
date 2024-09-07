@@ -1,4 +1,6 @@
 import { useState, useRef } from "react";
+import api from "../../../services/api.js";
+
 import {
   Container,
   Form,
@@ -15,6 +17,28 @@ import {
 function CreateProduct() {
   const [selectedImage, setSelectedImage] = useState();
   const fileInputRef = useRef();
+  const inputTitle = useRef();
+  const inputDesc = useRef();
+  const inputPrice = useRef();
+  const dateTime = new Date().toISOString();
+
+  async function createProducts() {
+    const formData = new FormData();
+    formData.append("title", inputTitle.current.value);
+    formData.append("desc", inputDesc.current.value);
+    formData.append("price", inputPrice.current.value);
+    formData.append("date_time", dateTime);
+
+    if (fileInputRef.current.files[0]) {
+      formData.append("file", fileInputRef.current.files[0]);
+    }
+
+    await api.post("/products", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+  }
 
   const handleImageRemove = () => {
     setSelectedImage(undefined);
@@ -26,19 +50,38 @@ function CreateProduct() {
       <Form>
         <h1>Novo produto</h1>
         <InputField>
-          <Input type="text" placeholder="Produto" required />
+          <Input
+            name="title"
+            type="text"
+            placeholder="Nome do produto"
+            ref={inputTitle}
+          />
         </InputField>
 
         <InputField>
-          <TextArea placeholder="Descrição" required />
+          <TextArea
+            name="desc"
+            type="text"
+            placeholder="Adicione uma descrição"
+            ref={inputDesc}
+          />
         </InputField>
 
         <InputField>
           <Input
-            type="file"
-            id="image"
+            name="price"
+            type="text"
+            placeholder="Valor (R$)"
+            ref={inputPrice}
+          />
+        </InputField>
+
+        <InputField>
+          <Input
             name="image"
+            type="file"
             accept="image/*"
+            id="image"
             ref={fileInputRef}
             onChange={(e) => {
               const file = e.target.files?.[0];
@@ -58,7 +101,9 @@ function CreateProduct() {
           </ImageWrapper>
         )}
 
-        <Button>Adicionar</Button>
+        <Button type="button" onClick={createProducts}>
+          Adicionar
+        </Button>
       </Form>
     </Container>
   );

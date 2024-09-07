@@ -27,6 +27,13 @@ export const Box = styled.div`
   }
 `;
 
+export const ContainerPanel = styled.div`
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  flex-direction: column; /* Para garantir que os elementos sejam empilhados */
+`;
+
 export const Logo = styled.li`
   list-style: none;
 `;
@@ -37,23 +44,26 @@ export const StyledIoExit = styled(IoExit)`
 `;
 
 export const BoxPanel = styled.div`
-  background-color: brown;
-  padding: 1em 4em;
-  margin: 2rem;
+  background-color: var(--second-background-color);
+  width: 75%;
+  // padding: 1em 2em;
+  // margin: 1rem 5rem 0 5rem;
   border-radius: 5px;
-
-  h1 {
-    font-family: "Poppins", sans-serif;
-    font-size: 23px;
-    font-weight: 500;
-    color: var(--second-text-color);
-  }
+  max-height: 500px; // Define a altura máxima
+  overflow-y: auto; // Ativa a barra de rolagem quando necessário
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & > h1 {
+    font-family: "Poppins", sans-serif;
+    font-size: 23px;
+    font-weight: 500;
+    color: var(--second-text-color);
+  }
 `;
 
 export const Button = styled.button`

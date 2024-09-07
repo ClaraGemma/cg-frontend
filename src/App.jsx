@@ -4,6 +4,7 @@ import Home from "./pages/Home/Home";
 import Produtos from "./pages/Products/Products";
 import Noticias from "./pages/News/News";
 import Empresa from "./pages/Company/Company";
+import Registrar from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Administrator from "./pages/Administrator/Administrator";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
@@ -19,9 +20,10 @@ function App() {
         <Route path="/produto" element={<Produtos />} />
         <Route path="/noticia" element={<Noticias />} />
         <Route path="/empresa" element={<Empresa />} />
-        <Route path="/admin" element={<Login />} />
+        <Route path="/registrar" element={<Registrar />} />
+        <Route path="/login" element={<Login />} />
         <Route
-          path="/administrador"
+          path="/admin"
           element={
             <PrivateRoute>
               <Administrator />

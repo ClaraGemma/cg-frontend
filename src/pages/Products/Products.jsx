@@ -2,7 +2,7 @@ import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import Footer from "../../components/Footer/Footer";
-import Product from "../../components/Product/Product";
+import ProductItem from "../../components/ProductItem/ProductItem";
 
 function Produtos() {
   const [menuIsVisible, setMenuIsVisible] = useState(false);
@@ -13,7 +13,7 @@ function Produtos() {
         setMenuIsVisible={setMenuIsVisible}
       />
       <Navbar setMenuIsVisible={setMenuIsVisible} />
-      <Product />
+      <ProductItem />
       <Footer />
     </>
   );

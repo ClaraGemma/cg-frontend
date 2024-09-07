@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { FaTrash } from "react-icons/fa";
 
 export const Container = styled.div`
-  // background-color: var(--primary-background-color);
+  background-color: var(--primary-background-color);
   margin: 2em 0;
   padding: 2em;
   border-radius: 5px;

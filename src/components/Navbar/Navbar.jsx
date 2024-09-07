@@ -1,6 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Container, List, Item, Logo, Box, More } from "./styles";
+import {
+  Container,
+  List,
+  Item,
+  Logo,
+  Box,
+  ButtonContainer,
+  Button,
+  More,
+} from "./styles";
 import logo from "../../assets/logo_navbar.svg";
 import { FaBars } from "react-icons/fa";
 
@@ -49,6 +58,16 @@ function Navbar({ setMenuIsVisible }) {
             </Link>
           </Item>
         </Box>
+
+        <ButtonContainer>
+          <Button>
+            <Link to={"/registrar"}>Registrar-se</Link>
+          </Button>
+          <Button>
+            <Link to={"/login"}>Entrar</Link>
+          </Button>
+        </ButtonContainer>
+
         <More>
           <FaBars onClick={() => setMenuIsVisible(true)} />
         </More>

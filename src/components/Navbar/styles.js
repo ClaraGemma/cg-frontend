@@ -49,6 +49,36 @@ export const Item = styled.li`
   }
 `;
 
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  @media (max-width: 906px) {
+    display: none;
+  }
+`;
+
+export const Button = styled.div`
+  background-color: var(--button-background-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  a {
+    color: var(--button-text-color);
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  &:hover {
+    background-color: var(--button-hover-background-color);
+  }
+`;
+
 export const More = styled.div`
   display: none;
 
