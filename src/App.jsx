@@ -7,6 +7,8 @@ import Empresa from "./pages/Company/Company";
 import Registrar from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Administrator from "./pages/Administrator/Administrator";
+import ProfileUser from "./pages/ProfileUser/ProfileUser";
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 import "./App.css";
@@ -22,6 +24,8 @@ function App() {
         <Route path="/empresa" element={<Empresa />} />
         <Route path="/registrar" element={<Registrar />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/meuperfil" element={<ProfileUser />} />
+        <Route path="/meucarrinho" element={<ShoppingCart />} />
         <Route
           path="/admin"
           element={

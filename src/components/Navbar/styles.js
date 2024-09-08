@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--primary-background-color);
+  background-color: var(--dark-color);
   padding: 2em;
-  // position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
@@ -36,7 +35,6 @@ export const Item = styled.li`
     text-decoration: none;
     font-family: "Poppins", sans-serif;
     font-weight: 400;
-    font-style: normal;
     font-size: 22px;
   }
 
@@ -89,5 +87,55 @@ export const More = styled.div`
     color: #222;
     font-size: 24px;
     cursor: pointer;
+  }
+`;
+
+export const Dropdown = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const DropdownButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+  color: var(--button-text-color);
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const DropdownMenu = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+`;
+
+export const DropdownItem = styled.div`
+  padding: 8px 16px;
+  &:hover {
+    background: #f5f5f5;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
   }
 `;

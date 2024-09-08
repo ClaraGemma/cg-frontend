@@ -20,10 +20,16 @@ function Login() {
   const handleClickLogin = async (values) => {
     try {
       const response = await api.post("/login", values);
+      const { token, role, name } = response.data;
 
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", token);
+      localStorage.setItem("userName", name); // Armazenar o nome do usuário
 
-      navigate("/administrador");
+      if (role === "admin") {
+        navigate("/admin");
+      } else if (role === "user") {
+        navigate("/home");
+      }
     } catch (error) {
       alert("Falha no login: Credenciais inválidas");
       console.error("Erro de login:", error);
@@ -66,6 +72,7 @@ function Login() {
           </LoginFormGroup>
 
           <Button type="submit">Entrar</Button>
+          <p>Não possui uma conta? Registre-se aqui!</p>
         </StyledForm>
       </Formik>
     </Container>

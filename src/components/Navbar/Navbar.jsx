@@ -1,5 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import logo from "../../assets/logo_navbar.svg";
+import { FaBars } from "react-icons/fa";
 import {
   Container,
   List,
@@ -9,12 +12,32 @@ import {
   ButtonContainer,
   Button,
   More,
+  Dropdown,
+  DropdownButton,
+  DropdownMenu,
+  DropdownItem,
 } from "./styles";
-import logo from "../../assets/logo_navbar.svg";
-import { FaBars } from "react-icons/fa";
 
 function Navbar({ setMenuIsVisible }) {
   const location = useLocation();
+  const [userName, setUserName] = useState(null);
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  useEffect(() => {
+    // Recupera o nome do usuário do localStorage
+    const name = localStorage.getItem("userName");
+    setUserName(name);
+  }, []);
+
+  const handleDropdownToggle = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userName");
+    setUserName(null);
+  };
 
   return (
     <Container>
@@ -60,12 +83,35 @@ function Navbar({ setMenuIsVisible }) {
         </Box>
 
         <ButtonContainer>
-          <Button>
-            <Link to={"/registrar"}>Registrar-se</Link>
-          </Button>
-          <Button>
-            <Link to={"/login"}>Entrar</Link>
-          </Button>
+          {userName ? (
+            <Dropdown>
+              <DropdownButton onClick={handleDropdownToggle}>
+                {userName}
+              </DropdownButton>
+              {isDropdownVisible && (
+                <DropdownMenu>
+                  <DropdownItem>
+                    <Link to="/meuperfil">Meu perfil</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to="/meucarrinho">Meu carrinho</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <button onClick={handleLogout}>Sair</button>
+                  </DropdownItem>
+                </DropdownMenu>
+              )}
+            </Dropdown>
+          ) : (
+            <>
+              <Button>
+                <Link to={"/registrar"}>Registrar-se</Link>
+              </Button>
+              <Button>
+                <Link to={"/login"}>Entrar</Link>
+              </Button>
+            </>
+          )}
         </ButtonContainer>
 
         <More>
