@@ -4,7 +4,7 @@ export const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 11rem 5rem 5rem 5rem;
+  margin: 8rem 5rem 10rem 5rem;
 `;
 
 export const ContentWrapper = styled.div`
@@ -12,8 +12,8 @@ export const ContentWrapper = styled.div`
 `;
 
 export const Section = styled.section`
-  //   background-color: yellow;
-  padding: 5rem;
+  // background-color: yellow;
+  padding: 1rem;
 
   p {
     color: var(--primary-text-color);
@@ -31,7 +31,7 @@ export const Header = styled.header`
   h1 {
     margin-right: 1rem;
     color: var(--primary-text-color);
-    font-weight: 500;
+    font-weight: bold;
     font-size: 24px;
   }
 

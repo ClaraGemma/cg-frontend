@@ -51,6 +51,7 @@ export const BoxPanel = styled.div`
   border-radius: 5px;
   max-height: 500px; // Define a altura máxima
   overflow-y: auto; // Ativa a barra de rolagem quando necessário
+  padding: 1em;
 `;
 
 export const Header = styled.div`
@@ -94,4 +95,11 @@ export const Button = styled.button`
 
 export const StyledIoAddCircle = styled(IoAddCircle)`
   font-size: 23px;
+`;
+
+export const ProductItemContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens se movam para a linha seguinte */
+  gap: 20px; /* Espaçamento entre os itens */
+  justify-content: center; /* Centraliza horizontalmente */
 `;

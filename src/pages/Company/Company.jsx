@@ -22,10 +22,20 @@ function Empresa() {
               <hr />
             </Header>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Bem-vindo à <b>Clara e Gemma</b>! Somos uma empresa especializada
+              na criação de acessórios artesanais em resina, oferecendo uma
+              ampla variedade de produtos personalizados, como colares, brincos
+              e chaveiros. Cada peça é cuidadosamente feita à mão, com atenção
+              aos detalhes e um toque de criatividade, para garantir que você
+              tenha algo único e especial.
+              <br />
+              <br />
+              Nosso compromisso é oferecer produtos que sejam não apenas lindos,
+              mas também carreguem significado. Sabemos que cada pessoa tem um
+              estilo e uma história, por isso, nossos acessórios são totalmente
+              personalizáveis, permitindo que você escolha cores, formatos e
+              elementos que representem a sua personalidade ou momentos
+              especiais de sua vida.
             </p>
           </Section>
 
@@ -35,10 +45,16 @@ function Empresa() {
               <hr />
             </Header>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Na Clara e Gemma, acreditamos que acessórios devem ir além da
+              beleza; eles devem contar histórias e criar conexões emocionais.
+              Nossa paixão pela resina nos leva a experimentar novas técnicas e
+              designs, garantindo inovação constante em nossos produtos.
+              <br />
+              <br />
+              <br />
+              Acompanhe-nos nas redes sociais e fique por dentro das nossas
+              novidades e lançamentos. Estamos ansiosos para criar algo incrível
+              para você!
             </p>
           </Section>
         </ContentWrapper>

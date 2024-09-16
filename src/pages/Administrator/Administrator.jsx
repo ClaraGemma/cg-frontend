@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../../assets/logo_navbar.svg";
 import ModalBase from "../../components/Modals/ModalBase/ModalBase.jsx";
 import CreatePost from "../../components/Modals/CreatePost/CreatePost.jsx";
@@ -18,17 +18,33 @@ import {
   Nav,
   StyledIoAddCircle,
   StyledIoExit,
+  ProductItemContainer,
 } from "./styles.js";
 
 function Administrator() {
   const [openModal, setOpenModal] = useState(false);
   const [openModalPr, setOpenModalPr] = useState(false);
   const navigate = useNavigate();
+  const [products, setProducts] = useState([]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/admin");
   };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/products");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   return (
     <Container>
@@ -71,12 +87,18 @@ function Administrator() {
             </Button>
             <ModalBase
               isOpen={openModalPr}
-              setOpenModalPr={() => setOpenModalPr(!openModalPr)}
+              setOpenModal={() => setOpenModalPr(!openModalPr)}
             >
               <CreateProduct />
             </ModalBase>
           </Header>
-          <ProductItem />
+          <ProductItemContainer>
+            <ProductItem
+              products={products}
+              showAddToCart={false}
+              showDeleteButton={true}
+            />
+          </ProductItemContainer>
         </BoxPanel>
       </ContainerPanel>
     </Container>
