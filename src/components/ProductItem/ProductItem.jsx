@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importa o useNavigate
 import {
   ProductCard,
   ProductImage,
@@ -11,13 +13,55 @@ import {
   ProductDesc,
 } from "./styles";
 
-function ProductItem({ products, showAddToCart, showDeleteButton }) {
-  if (!products || products.length === 0) {
+const ProductItem = ({
+  products,
+  showAddToCart = true,
+  showDeleteButton = false,
+}) => {
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Hook para navegação
+
+  const handleAddToCart = async (productId) => {
+    console.log("Adicionando produto com ID:", productId);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Usuário não está autenticado.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ productId }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erro ao adicionar ao carrinho.");
+      }
+
+      alert(data.message);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleNavigateToProduct = (productId) => {
+    navigate(`/produto/${productId}`);
+  };
+
+  if (!Array.isArray(products) || products.length === 0) {
     return <p>Nenhum produto encontrado.</p>;
   }
 
   return (
     <>
+      {error && <p style={{ color: "red" }}>{error}</p>}{" "}
       {products.map((product) => (
         <ProductCard key={product.id}>
           <ProductImage
@@ -26,14 +70,18 @@ function ProductItem({ products, showAddToCart, showDeleteButton }) {
           />
           <ProductInfo>
             <div>
-              <ProductTitle>{product.title}</ProductTitle>
+              <ProductTitle onClick={() => handleNavigateToProduct(product.id)}>
+                {product.title}
+              </ProductTitle>
               <ProductDesc>{product.desc}</ProductDesc>
             </div>
             <ProductPriceContainer>
               <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
               <div>
                 {showAddToCart && (
-                  <AddToCartButton>Adicionar ao Carrinho</AddToCartButton>
+                  <AddToCartButton onClick={() => handleAddToCart(product.id)}>
+                    Adicionar ao Carrinho
+                  </AddToCartButton>
                 )}
                 {showDeleteButton && <DeleteButton>Deletar</DeleteButton>}
               </div>
@@ -43,7 +91,7 @@ function ProductItem({ products, showAddToCart, showDeleteButton }) {
       ))}
     </>
   );
-}
+};
 
 // Validação das props com PropTypes
 ProductItem.propTypes = {
@@ -58,11 +106,6 @@ ProductItem.propTypes = {
   ).isRequired,
   showAddToCart: PropTypes.bool,
   showDeleteButton: PropTypes.bool,
-};
-
-ProductItem.defaultProps = {
-  showAddToCart: true,
-  showDeleteButton: false,
 };
 
 export default ProductItem;

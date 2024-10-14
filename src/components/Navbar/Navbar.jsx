@@ -58,8 +58,8 @@ function Navbar({ setMenuIsVisible }) {
           </Item>
           <Item>
             <Link
-              to={"/produto"}
-              className={location.pathname === "/produto" ? "active" : ""}
+              to={"/produtos"}
+              className={location.pathname === "/produtos" ? "active" : ""}
             >
               Produtos
             </Link>

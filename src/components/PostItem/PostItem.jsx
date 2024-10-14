@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import api from "../../services/api";
 import {
   Container,
   Header,
@@ -7,7 +8,6 @@ import {
   Description,
   Image,
 } from "./styles.js";
-import api from "../../services/api";
 
 function PostItem() {
   const [posts, setPosts] = useState([]);

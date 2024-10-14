@@ -35,6 +35,13 @@ export const ProductInfo = styled.div`
 export const ProductTitle = styled.h3`
   font-size: 18px;
   margin: 0;
+  color: #333;
+  cursor: pointer; /* Adiciona um ponteiro ao passar sobre o título */
+  transition: color 0.3s ease; /* Transição suave para a cor */
+
+  &:hover {
+    color: #007bff; /* Altera a cor ao passar o mouse */
+  }
 `;
 
 export const ProductDesc = styled.p`

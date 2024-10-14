@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import Produtos from "./pages/Products/Products";
+import ProductDetail from "./pages/ProductDetail/ProductDetail";
 import Noticias from "./pages/News/News";
 import Empresa from "./pages/Company/Company";
 import Registrar from "./pages/Register/Register";
@@ -19,21 +20,31 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/produto" element={<Produtos />} />
+        <Route path="/produtos" element={<Produtos />} />
+        <Route path="/produto/:id" element={<ProductDetail />} />
         <Route path="/noticia" element={<Noticias />} />
         <Route path="/empresa" element={<Empresa />} />
         <Route path="/registrar" element={<Registrar />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/meuperfil" element={<ProfileUser />} />
         <Route path="/meucarrinho" element={<ShoppingCart />} />
+
         <Route
           path="/admin"
           element={
-            <PrivateRoute>
+            <PrivateRoute allowedRoles={["admin"]}>
               <Administrator />
             </PrivateRoute>
           }
         />
+        <Route
+          path="/meuperfil"
+          element={
+            <PrivateRoute allowedRoles={["user"]}>
+              <ProfileUser />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="*" element={<h1>Acho que você digitou errado...</h1>} />
       </Routes>
     </BrowserRouter>

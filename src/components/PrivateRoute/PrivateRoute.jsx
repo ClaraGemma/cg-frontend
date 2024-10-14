@@ -1,11 +1,16 @@
 import { Navigate } from "react-router-dom";
 
-function PrivateRoute({ children }) {
+function PrivateRoute({ children, allowedRoles }) {
   const token = localStorage.getItem("token");
+  const userRole = localStorage.getItem("role"); // Pegue a role do usuário armazenada ao fazer login.
 
-  // Verifica se há um token no armazenamento local
   if (!token) {
-    return <Navigate to="/admin" />;
+    return <Navigate to="/login" />;
+  }
+
+  // Verifica se o usuário tem permissão para acessar a página
+  if (allowedRoles && !allowedRoles.includes(userRole)) {
+    return <Navigate to="/not-authorized" />;
   }
 
   return children;

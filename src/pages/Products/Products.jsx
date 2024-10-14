@@ -24,11 +24,10 @@ function Products() {
   const handleSearch = async (page = 1) => {
     try {
       const params = searchQuery ? { query: searchQuery, page } : { page };
-      const response = await api.get(`/products`, { params });
-      console.log("Produtos encontrados:", response.data.products); // Verificar resposta
+      const response = await api.get(`/products/search`, { params });
       setFilteredProducts(response.data.products);
       setTotalPages(response.data.totalPages);
-      setCurrentPage(response.data.currentPage);
+      setCurrentPage(page);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
     }

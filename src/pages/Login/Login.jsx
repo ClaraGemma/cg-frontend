@@ -23,7 +23,8 @@ function Login() {
       const { token, role, name } = response.data;
 
       localStorage.setItem("token", token);
-      localStorage.setItem("userName", name); // Armazenar o nome do usuário
+      localStorage.setItem("role", role);
+      localStorage.setItem("userName", name);
 
       if (role === "admin") {
         navigate("/admin");
@@ -32,7 +33,6 @@ function Login() {
       }
     } catch (error) {
       alert("Falha no login: Credenciais inválidas");
-      console.error("Erro de login:", error);
     }
   };
 
