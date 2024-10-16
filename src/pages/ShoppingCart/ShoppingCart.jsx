@@ -18,8 +18,21 @@ const ShoppingCart = () => {
     // Função para buscar itens do carrinho do usuário
     const fetchCartItems = async () => {
       try {
-        const response = await fetch("http://localhost:3000/cart");
+        const response = await fetch("http://localhost:3000/cart", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`, // Inclua o token aqui
+          },
+        });
+
+        // Verifica se a resposta foi bem-sucedida
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status} ${response.statusText}`);
+        }
+
         const data = await response.json();
+        console.log(data); // Para verificar a estrutura dos dados
         setCartItems(data);
       } catch (error) {
         console.error("Erro ao buscar itens do carrinho:", error);
@@ -35,10 +48,9 @@ const ShoppingCart = () => {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Ajuste o cabeçalho se necessário
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      // Atualiza a lista de itens do carrinho após a remoção
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.id !== itemId)
       );
@@ -61,16 +73,19 @@ const ShoppingCart = () => {
         <CartItemContainer>
           {cartItems.map((item) => (
             <CartItem key={item.id}>
-              <img
-                src={`http://localhost:3000${item.product.image_url}`}
-                alt={item.product.title}
-              />
-              <div className="item-details">
-                <h2>{item.product.title}</h2>
-                <p>{item.product.desc}</p>
-                <p>Preço: R$ {item.product.price}</p>
-                <p>Quantidade: {item.quantity}</p>
-              </div>
+              {item.product && ( // Verifique se item.product existe
+                <>
+                  <img
+                    src={`http://localhost:3000${item.product.image_url}`}
+                    alt={item.product.title}
+                  />
+                  <div className="item-details">
+                    <h2>{item.product.title}</h2>
+                    <p>Preço: R$ {item.product.price}</p>
+                    <p>Quantidade: {item.quantity}</p>
+                  </div>
+                </>
+              )}
               <button onClick={() => handleRemoveItem(item.id)}>Remover</button>
             </CartItem>
           ))}

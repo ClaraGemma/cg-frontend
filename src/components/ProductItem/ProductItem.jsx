@@ -19,7 +19,7 @@ const ProductItem = ({
   showDeleteButton = false,
 }) => {
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Hook para navegação
+  const navigate = useNavigate();
 
   const handleAddToCart = async (productId) => {
     console.log("Adicionando produto com ID:", productId);
