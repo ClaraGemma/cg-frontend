@@ -25,12 +25,12 @@ Este projeto tem como objetivo fornecer as telas de navegação do website Clara
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
+    git clone https://github.com/ClaraGemma/cg-frontend.git
     ```
 
 2. Navegue até o diretório do projeto:
     ```bash
-    cd seu-repositorio
+    cd nome-do-diretório
     ```
 
 3. Instale as dependências:
