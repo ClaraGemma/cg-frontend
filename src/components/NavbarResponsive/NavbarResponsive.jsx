@@ -9,7 +9,7 @@ function NavbarResponsive({ menuIsVisible, setMenuIsVisible }) {
     document.body.style.overflowY = menuIsVisible ? "hidden" : "auto";
   }, [menuIsVisible]);
   return (
-    <Container isVisible={menuIsVisible}>
+    <Container $isVisible={menuIsVisible}>
       <IoClose size={45} onClick={() => setMenuIsVisible(false)} />
       <nav>
         <Link

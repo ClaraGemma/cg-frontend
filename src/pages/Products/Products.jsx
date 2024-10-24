@@ -75,7 +75,7 @@ function Products() {
           <PaginationButton
             key={page + 1}
             onClick={() => handlePageChange(page + 1)}
-            active={page + 1 === currentPage}
+            $active={page + 1 === currentPage}
           >
             {page + 1}
           </PaginationButton>

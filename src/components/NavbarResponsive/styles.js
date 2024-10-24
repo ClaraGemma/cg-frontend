@@ -42,8 +42,8 @@ export const Container = styled.section`
     transition: 0.7s;
   }
 
-  ${({ isVisible }) =>
-    isVisible &&
+  ${({ $isVisible }) =>
+    $isVisible &&
     css`
       opacity: 1;
       pointer-events: auto;

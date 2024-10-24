@@ -59,15 +59,15 @@ export const Pagination = styled.div`
 `;
 
 export const PaginationButton = styled.button`
-  background: ${(props) => (props.active ? "#007bff" : "#fff")};
+  background: ${(props) => (props.$active ? "#007bff" : "#fff")};
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 8px 16px;
   margin: 0 4px;
   cursor: pointer;
-  color: ${(props) => (props.active ? "#fff" : "#007bff")};
+  color: ${(props) => (props.$active ? "#fff" : "#007bff")};
 
   &:hover {
-    background: ${(props) => !props.active && "#f1f1f1"};
+    background: ${(props) => !props.$active && "#f1f1f1"};
   }
 `;

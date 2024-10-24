@@ -23,9 +23,7 @@ function Footer() {
             <p>email@email.com</p>
           </Contact>
         </ContactUs>
-        <div id="mapa">
-          <Mapa />
-        </div>
+        <div id="mapa">{/* <Mapa /> */}</div>
       </List>
       <Copyright>
         <p>Todos os direitos reservados Clara & Gema 2024</p>
