@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #5e94a3;
-  padding: 2rem 0;
   color: #f8f9f0;
   display: flex;
   flex-direction: column;
@@ -14,6 +13,7 @@ export const List = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+  margin: 2rem 0;
   width: 100%;
   max-width: 1200px;
   gap: 2rem;
@@ -59,7 +59,7 @@ export const MapContainer = styled.div`
 `;
 
 export const Copyright = styled.div`
-  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
   font-size: 0.9rem;
   text-align: center;
   font-family: "Livvic", sans-serif; /* Aplicando a fonte Livvic */

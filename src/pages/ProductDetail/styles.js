@@ -125,6 +125,8 @@ export const Star = styled.div`
   margin-right: 5px;
 `;
 
+export const ReviewerName = styled.div``;
+
 export const ReviewList = styled.div`
   margin-top: 20px;
 `;

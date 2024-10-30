@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
@@ -20,10 +20,35 @@ import {
 function ProfileUser() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: "Lucas",
-    email: "lucas@email.com",
-    password: "********",
+    name: "",
+    email: "",
+    currentPassword: "",
+    newPassword: "",
   });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const response = await fetch("http://localhost:3000/user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Supondo que você armazena o token no localStorage
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao buscar dados do usuário");
+      }
+
+      const data = await response.json();
+      setFormData({
+        ...formData,
+        name: data.name,
+        email: data.email,
+      });
+    };
+
+    fetchUserData();
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,10 +62,26 @@ function ProfileUser() {
     setIsModalOpen(false);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Função para atualizar os dados
-    setIsModalOpen(false);
+    const token = localStorage.getItem("token");
+
+    const response = await fetch("http://localhost:3000/user/update", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      alert(errorData.message);
+    } else {
+      setIsModalOpen(false);
+      alert("Informações atualizadas com sucesso!");
+    }
   };
 
   return (
@@ -58,7 +99,7 @@ function ProfileUser() {
           </ProfileInfo>
           <ProfileInfo>
             <Label>Senha:</Label>
-            <Value>{formData.password}</Value>
+            <Value>********</Value> {/* Não exibir senha real por segurança */}
           </ProfileInfo>
           <EditButton onClick={handleEditClick}>Editar informações</EditButton>
         </ProfileBox>
@@ -75,11 +116,18 @@ function ProfileUser() {
                   value={formData.name}
                   onChange={handleInputChange}
                 />
-                <Label>Senha:</Label>
+                <Label>Senha atual:</Label>
                 <Input
                   type="password"
-                  name="password"
-                  value={formData.password}
+                  name="currentPassword"
+                  value={formData.currentPassword}
+                  onChange={handleInputChange}
+                />
+                <Label>Nova senha:</Label>
+                <Input
+                  type="password"
+                  name="newPassword"
+                  value={formData.newPassword}
                   onChange={handleInputChange}
                 />
                 <SubmitButton type="submit">Salvar</SubmitButton>

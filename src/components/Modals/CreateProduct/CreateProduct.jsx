@@ -33,9 +33,12 @@ function CreateProduct() {
       formData.append("file", fileInputRef.current.files[0]);
     }
 
+    const token = localStorage.getItem("token");
+
     await api.post("/products", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token}`,
       },
     });
   }

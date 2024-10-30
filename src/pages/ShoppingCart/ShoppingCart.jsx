@@ -13,24 +13,22 @@ const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    // Função para buscar itens do carrinho do usuário
     const fetchCartItems = async () => {
       try {
         const response = await fetch("http://localhost:3000/cart", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Inclua o token aqui
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
-        // Verifica se a resposta foi bem-sucedida
         if (!response.ok) {
           throw new Error(`Erro: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log(data); // Para verificar a estrutura dos dados
+        console.log(data);
         setCartItems(data);
       } catch (error) {
         console.error("Erro ao buscar itens do carrinho:", error);
@@ -57,6 +55,30 @@ const ShoppingCart = () => {
     }
   };
 
+  const handleIncreaseQuantity = (itemId) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const handleDecreaseQuantity = (itemId) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item) =>
+        item.id === itemId && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  };
+
+  // const calculateTotal = () => {
+  //   return cartItems
+  //     .reduce((total, item) => total + item.product.price * item.quantity, 0)
+  //     .toFixed(2);
+  // };
+
   return (
     <>
       <Navbar />
@@ -67,7 +89,7 @@ const ShoppingCart = () => {
         <CartItemContainer>
           {cartItems.map((item) => (
             <CartItem key={item.id}>
-              {item.product && ( // Verifique se item.product existe
+              {item.product && (
                 <>
                   <img
                     src={`http://localhost:3000${item.product.image_url}`}
@@ -75,30 +97,33 @@ const ShoppingCart = () => {
                   />
                   <div className="item-details">
                     <h2>{item.product.title}</h2>
-                    <p>Preço: R$ {item.product.price}</p>
+                    <p>R$ {item.product.price.toFixed(2)}</p>
                     <p>Quantidade: {item.quantity}</p>
                   </div>
                 </>
               )}
+              <div className="quantity-controls">
+                <button onClick={() => handleDecreaseQuantity(item.id)}>
+                  -
+                </button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleIncreaseQuantity(item.id)}>
+                  +
+                </button>
+              </div>
               <button onClick={() => handleRemoveItem(item.id)}>Remover</button>
             </CartItem>
           ))}
         </CartItemContainer>
-        <CartFooter>
-          <div className="total">
-            <h2>Total</h2>
-            <p>
-              R${" "}
-              {cartItems
-                .reduce(
-                  (total, item) => total + item.product.price * item.quantity,
-                  0
-                )
-                .toFixed(2)}
-            </p>
-          </div>
-          <button>Finalizar Compra</button>
-        </CartFooter>
+        {cartItems.map((item) => (
+          <CartFooter key={item.id}>
+            <div className="total">
+              <h2>Total</h2>
+              <p>R$ {item.product.price.toFixed(2)}</p>
+            </div>
+            <button>Finalizar Compra</button>
+          </CartFooter>
+        ))}
       </Container>
       <Footer />
     </>

@@ -54,6 +54,8 @@ export const Description = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%; // Ajusta a largura para ocupar 100% do contêiner
+  width: 50%; // Ajusta a largura para ocupar 70% do contêiner
   height: auto; // Mantém a proporção da imagem
+  display: block; // Garante que o elemento img seja exibido como um bloco
+  margin: 0 auto; // Centraliza a imagem horizontalmente
 `;

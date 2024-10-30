@@ -52,6 +52,36 @@ export const CartItem = styled.div`
     }
   }
 
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    button {
+      background-color: #eee;
+      color: #333;
+      border: 1px solid #ccc;
+      padding: 5px 10px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      &:disabled {
+        color: #aaa;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      font-size: 16px;
+      margin: 0 8px;
+    }
+  }
+
   button {
     background-color: #ff6f61;
     color: white;

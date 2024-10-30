@@ -21,6 +21,7 @@ import {
   Star,
   ReviewList,
   ReviewItem,
+  ReviewerName,
 } from "./styles";
 
 const ProductDetail = () => {
@@ -30,17 +31,27 @@ const ProductDetail = () => {
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
+  const userName = localStorage.getItem("userName");
 
   useEffect(() => {
-    const fetchProduct = async () => {
+    const fetchProductDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/product/${id}`);
-        if (!response.ok) {
+        const productResponse = await fetch(
+          `http://localhost:3000/product/${id}`
+        );
+        const reviewResponse = await fetch(
+          `http://localhost:3000/products/${id}/reviews`
+        );
+
+        if (!productResponse.ok || !reviewResponse.ok) {
           throw new Error("Erro ao buscar detalhes do produto.");
         }
-        const data = await response.json();
-        setProduct(data);
-        setReviews(data.reviews || []);
+
+        const productData = await productResponse.json();
+        const reviewsData = await reviewResponse.json();
+
+        setProduct(productData);
+        setReviews(reviewsData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -48,7 +59,7 @@ const ProductDetail = () => {
       }
     };
 
-    fetchProduct();
+    fetchProductDetails();
   }, [id]);
 
   const handleReviewChange = (e) => {
@@ -59,11 +70,36 @@ const ProductDetail = () => {
     }));
   };
 
-  const handleReviewSubmit = (e) => {
+  const handleReviewSubmit = async (e) => {
     e.preventDefault();
+
     if (newReview.rating > 0 && newReview.comment) {
-      setReviews((prev) => [...prev, newReview]);
-      setNewReview({ rating: 0, comment: "" });
+      try {
+        const response = await fetch(
+          `http://localhost:3000/products/${id}/reviews`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`, // Token do usuário logado
+            },
+            body: JSON.stringify({
+              rating: newReview.rating,
+              comment: newReview.comment,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Erro ao enviar avaliação.");
+        }
+
+        const savedReview = await response.json();
+        setReviews((prev) => [...prev, { ...savedReview, userName }]); // Adiciona a nova avaliação
+        setNewReview({ rating: 0, comment: "" });
+      } catch (error) {
+        setError("Erro ao enviar avaliação.");
+      }
     }
   };
 
@@ -89,8 +125,7 @@ const ProductDetail = () => {
       </ProductDetailContainer>
 
       <ReviewsContainer>
-        <h2 style={{ fontFamily: "Livvic" }}>Deixe sua avaliação</h2>{" "}
-        {/* Estilizando título com Livvic */}
+        <h2 style={{ fontFamily: "Livvic" }}>Deixe sua avaliação</h2>
         <ReviewForm onSubmit={handleReviewSubmit}>
           <StarRating>
             {[1, 2, 3, 4, 5].map((star) => (
@@ -115,6 +150,7 @@ const ProductDetail = () => {
         <ReviewList>
           {reviews.map((review, index) => (
             <ReviewItem key={index}>
+              <ReviewerName>{review.userName}</ReviewerName>
               <StarRating>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <AiFillStar
@@ -125,8 +161,7 @@ const ProductDetail = () => {
               </StarRating>
               <p style={{ fontFamily: "Poppins", marginTop: "8px" }}>
                 {review.comment}
-              </p>{" "}
-              {/* Texto da avaliação em Poppins */}
+              </p>
             </ReviewItem>
           ))}
         </ReviewList>

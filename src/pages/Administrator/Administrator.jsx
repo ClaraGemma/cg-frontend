@@ -19,6 +19,8 @@ import {
   StyledIoAddCircle,
   StyledIoExit,
   ProductItemContainer,
+  Pagination,
+  PaginationButton,
 } from "./styles.js";
 
 function Administrator() {
@@ -26,9 +28,10 @@ function Administrator() {
   const [openModalPr, setOpenModalPr] = useState(false);
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [isAdmin, setIsAdmin] = useState(false);
 
-  // Função para logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
@@ -64,27 +67,25 @@ function Administrator() {
     checkAdmin();
   }, [navigate]);
 
-  // Função para buscar produtos
+  // Função para buscar produtos com paginação
+  const fetchProducts = async (page) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/products?page=${page}`
+      );
+      const data = await response.json();
+      setProducts(data.products);
+      setTotalPages(data.totalPages); // Assumindo que seu backend retorna totalPages
+      setCurrentPage(page);
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
+      setProducts([]);
+    }
+  };
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/products");
-        const data = await response.json();
-        setProducts(data);
-
-        if (Array.isArray(data.products)) {
-          setProducts(data.products);
-        } else {
-          setProducts([]);
-        }
-      } catch (error) {
-        console.error("Erro ao buscar produtos:", error);
-        setProducts([]);
-      }
-    };
-
-    fetchProducts();
-  }, []);
+    fetchProducts(currentPage);
+  }, [currentPage]);
 
   if (!isAdmin) {
     return <p>Carregando...</p>;
@@ -143,6 +144,19 @@ function Administrator() {
               showDeleteButton={true}
             />
           </ProductItemContainer>
+
+          {/* Paginação */}
+          <Pagination>
+            {[...Array(totalPages)].map((_, index) => (
+              <PaginationButton
+                key={index + 1}
+                onClick={() => fetchProducts(index + 1)}
+                $active={index + 1 === currentPage}
+              >
+                {index + 1}
+              </PaginationButton>
+            ))}
+          </Pagination>
         </BoxPanel>
       </ContainerPanel>
     </Container>

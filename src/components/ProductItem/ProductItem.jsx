@@ -20,6 +20,7 @@ const ProductItem = ({
 }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [productList, setProductList] = useState(products);
 
   const handleAddToCart = async (productId) => {
     console.log("Adicionando produto com ID:", productId);
@@ -59,6 +60,40 @@ const ProductItem = ({
     return <p>Nenhum produto encontrado.</p>;
   }
 
+  const handleDeleteProduct = async (productId) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Usuário não está autenticado.");
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `http://localhost:3000/products/${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erro ao deletar produto.");
+      }
+      if (response.ok) {
+        setProductList(
+          productList.filter((product) => product.id !== productId)
+        );
+      }
+      alert(data.message);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <>
       {error && <p style={{ color: "red" }}>{error}</p>}{" "}
@@ -83,7 +118,11 @@ const ProductItem = ({
                     Adicionar ao Carrinho
                   </AddToCartButton>
                 )}
-                {showDeleteButton && <DeleteButton>Deletar</DeleteButton>}
+                {showDeleteButton && (
+                  <DeleteButton onClick={() => handleDeleteProduct(product.id)}>
+                    Deletar
+                  </DeleteButton>
+                )}
               </div>
             </ProductPriceContainer>
           </ProductInfo>
