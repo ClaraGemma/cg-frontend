@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   justify-content: center;
+  height: 50vh;
   align-items: center;
-  height: 100vh;
   background-color: #f5f5f5;
 `;
 
@@ -13,7 +13,8 @@ export const ProfileBox = styled.div`
   padding: 2em;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 400px;
+  width: 500px;
+  height: 300px;
   text-align: center;
 `;
 
@@ -22,28 +23,31 @@ export const ProfileInfo = styled.div`
 `;
 
 export const Label = styled.label`
-  font-weight: bold;
+  font-weight: 600; // Usar peso 600 para Livvic
   font-size: 18px;
+  font-family: "Livvic", sans-serif; // Aplica Livvic ao título
 `;
 
 export const Value = styled.p`
   font-size: 16px;
   margin-top: 0.5em;
+  font-family: "Poppins", sans-serif; // Aplica Livvic ao título
   color: #555;
 `;
 
 export const EditButton = styled.button`
-  background-color: #007bff;
+  background-color: #f66f00;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  font-family: "Livvic", sans-serif; // Aplica Livvic ao botão
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #ae4f00;
   }
 `;
 
@@ -98,6 +102,7 @@ export const SubmitButton = styled.button`
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
+  font-family: "Livvic", sans-serif; // Aplica Livvic ao botão
 
   &:hover {
     background-color: #218838;

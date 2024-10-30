@@ -6,6 +6,9 @@ export const Container = styled.div`
   margin: 2em 0;
   padding: 2em;
   border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Adicione uma sombra para destaque
+  display: flex; // Para usar flexbox se necessário
+  flex-direction: column; // Alinha os itens em coluna
 `;
 
 export const Header = styled.div`
@@ -51,5 +54,6 @@ export const Description = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 50%;
+  width: 100%; // Ajusta a largura para ocupar 100% do contêiner
+  height: auto; // Mantém a proporção da imagem
 `;

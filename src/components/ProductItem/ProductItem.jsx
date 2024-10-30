@@ -76,7 +76,7 @@ const ProductItem = ({
               <ProductDesc>{product.desc}</ProductDesc>
             </div>
             <ProductPriceContainer>
-              <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
+              <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
               <div>
                 {showAddToCart && (
                   <AddToCartButton onClick={() => handleAddToCart(product.id)}>

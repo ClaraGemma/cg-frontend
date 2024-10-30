@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import Footer from "../../components/Footer/Footer";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import {
@@ -15,7 +14,6 @@ import { FaSearch } from "react-icons/fa";
 import api from "../../services/api";
 
 function Products() {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
@@ -50,11 +48,7 @@ function Products() {
 
   return (
     <>
-      <NavbarResponsive
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-      />
-      <Navbar setMenuIsVisible={setMenuIsVisible} />
+      <Navbar />
       <SearchBar>
         <SearchInput
           type="text"

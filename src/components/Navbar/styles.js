@@ -1,141 +1,127 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--dark-color);
-  padding: 2em;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
+  background-color: #f8f9f0;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: "Livvic", sans-serif;
 `;
 
-export const List = styled.ul`
+export const List = styled.div`
   display: flex;
-  list-style: none;
   align-items: center;
   justify-content: space-between;
+  max-width: 100%;
+  padding: 0 2rem;
 `;
 
-export const Logo = styled.li`
-  @media (max-width: 906px) {
-    padding-right: 0;
+export const Logo = styled.div`
+  img {
+    height: 60px;
   }
 `;
 
-export const Box = styled.div`
+export const NavItems = styled.div`
   display: flex;
-  gap: 10em;
+  gap: 2.5rem;
+  flex-grow: 1;
   justify-content: center;
-  flex: 1;
-  padding-right: 8%;
 `;
 
-export const Item = styled.li`
+export const Item = styled.div`
   & a {
-    color: var(--primary-text-color);
+    color: #5e94a3;
+    font-size: 1.2rem;
     text-decoration: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-size: 22px;
+    font-weight: 500;
   }
 
-  & a:hover {
-    font-weight: 300;
-  }
-
-  @media (max-width: 906px) {
-    display: none;
+  & a:hover,
+  & a.active {
+    color: #f66f00;
   }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
-  gap: 10px;
   align-items: center;
-
-  @media (max-width: 906px) {
-    display: none;
-  }
+  gap: 1rem;
 `;
 
 export const Button = styled.div`
-  background-color: var(--button-background-color);
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: #5e94a3;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
 
-  a {
-    color: var(--button-text-color);
+  & a {
+    color: #f8f9f0;
+    font-size: 1rem;
     text-decoration: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-  }
-
-  &:hover {
-    background-color: var(--button-hover-background-color);
-  }
-`;
-
-export const More = styled.div`
-  display: none;
-
-  @media (max-width: 906px) {
-    display: flex;
-    position: absolute;
-    right: 30px;
-    color: #222;
-    font-size: 24px;
-    cursor: pointer;
   }
 `;
 
 export const Dropdown = styled.div`
   position: relative;
-  display: inline-block;
 `;
 
 export const DropdownButton = styled.button`
   background: none;
   border: none;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 10px;
-  color: var(--button-text-color);
-  font-family: "Poppins", sans-serif;
+  color: #5e94a3;
+  font-size: 1.1rem;
   font-weight: 500;
+  cursor: pointer;
 
-  &:focus {
-    outline: none;
+  &:hover {
+    color: #f66f00;
   }
 `;
 
 export const DropdownMenu = styled.div`
-  display: flex;
-  flex-direction: column;
   position: absolute;
-  top: 100%;
+  top: 120%;
   right: 0;
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: #f8f9f0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 1;
 `;
 
 export const DropdownItem = styled.div`
-  padding: 8px 16px;
-  &:hover {
-    background: #f5f5f5;
-  }
-  a {
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  & a {
+    color: #5e94a3;
     text-decoration: none;
-    color: black;
+    font-size: 1rem;
+    font-weight: 500;
   }
-  button {
-    background: none;
+
+  /* Efeito de hover somente em "Meu perfil" e "Meu carrinho" */
+  &:not(:last-child):hover {
+    background-color: #f66f00;
+    & a {
+      color: #f8f9f0;
+    }
+  }
+
+  /* Estilo específico para o botão "Sair" */
+  & button {
+    background-color: #ff4b4b;
+    color: #f8f9f0;
     border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    width: 100%;
     cursor: pointer;
-    color: black;
+  }
+
+  & button:hover {
+    background-color: #cc3a3a; /* Hover para o botão "Sair" */
   }
 `;

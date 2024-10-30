@@ -1,53 +1,66 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--second-background-color);
-`;
-
-export const List = styled.ul`
+  background-color: #5e94a3;
+  padding: 2rem 0;
+  color: #f8f9f0;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  list-style: none;
-  height: 100%;
-  padding: 10em 20em;
+  font-family: "Livvic", sans-serif; /* Aplicando a fonte Livvic */
 `;
 
-export const ContactUs = styled.li`
+export const List = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  gap: 2rem;
+`;
+
+export const ContactUs = styled.div`
+  text-align: left;
+
   h1 {
-    color: var(--second-text-color);
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 24px;
-    margin-bottom: 2em;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 `;
 
 export const Contact = styled.div`
   display: flex;
   align-items: center;
-  text-align: center;
-  margin-bottom: 0.5em;
-
-  img {
-    width: 25px;
-  }
+  margin: 0.5rem 0;
 
   p {
-    color: var(--second-text-color);
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-    font-style: normal;
-    font-size: 15px;
-    margin-left: 0.5em;
+    margin: 0; /* Remover margem padrão do parágrafo */
+    font-size: 1rem; /* Definir tamanho da fonte */
+  }
+
+  svg {
+    font-size: 1.5rem; /* Ajuste do tamanho do ícone */
+    color: #f8f9f0; /* Cor do ícone */
   }
 `;
 
-export const Copyright = styled.li`
+export const MapContainer = styled.div`
+  width: 100%;
+  max-width: 500px;
+  height: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+`;
+
+export const Copyright = styled.div`
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
   text-align: center;
-  color: var(--second-text-color);
-  font-family: "Livvic", sans-serif;
-  list-style: none;
-  padding-bottom: 5px;
+  font-family: "Livvic", sans-serif; /* Aplicando a fonte Livvic */
 `;

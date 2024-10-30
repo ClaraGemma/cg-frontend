@@ -1,24 +1,18 @@
-import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import PostItem from "../../components/PostItem/PostItem";
 import Footer from "../../components/Footer/Footer";
+import { Container } from "./styles";
 
-function Noticias() {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
-
+function News() {
   return (
     <>
-      <NavbarResponsive
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-      />
-      <Navbar setMenuIsVisible={setMenuIsVisible} />
-
-      <PostItem />
+      <Navbar />
+      <Container>
+        <PostItem />
+      </Container>
       <Footer />
     </>
   );
 }
 
-export default Noticias;
+export default News;

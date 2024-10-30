@@ -1,86 +1,84 @@
 import styled from "styled-components";
 
-// Container principal da página do produto
 export const ProductDetailContainer = styled.div`
   display: flex;
-  flex-direction: row; /* Alinha a imagem e as informações lado a lado */
-  padding: 20px; /* Reduzido para ficar mais próximo do estilo do Mercado Livre */
-  background-color: #f5f5f5; /* Cor de fundo semelhante */
-  min-height: 100vh;
-  max-width: 1200px; /* Limita a largura máxima para centralizar */
-  margin: auto; /* Centraliza o container */
-`;
-
-// Imagem do produto
-export const ProductImage = styled.img`
-  width: 400px; /* Aumenta a largura da imagem */
-  height: 400px; /* Aumenta a altura da imagem */
-  object-fit: cover; /* Mantém a proporção da imagem */
-  border: 1px solid #ddd; /* Adiciona uma borda suave */
-  border-radius: 4px; /* Bordas arredondadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  margin-right: 20px; /* Espaço entre a imagem e as informações do produto */
-`;
-
-// Informações do produto
-export const ProductInfo = styled.div`
-  background-color: #fff; /* Cor de fundo branca para as informações */
+  flex-direction: row;
   padding: 20px;
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #f5f5f5;
+  max-width: 1200px;
+  margin: auto;
+  gap: 20px; /* Espaçamento entre produto e reviews */
+`;
+
+export const ProductImage = styled.img`
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+`;
+
+export const ProductInfo = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 600px; /* Largura máxima para as informações do produto */
+  max-width: 600px;
 `;
 
-// Título do produto
 export const ProductTitle = styled.h1`
-  font-size: 26px; /* Ajuste na fonte */
+  font-size: 26px;
   margin-bottom: 16px;
-  color: #333; /* Cor do texto */
-  font-weight: bold; /* Deixa o título mais destacado */
+  color: #333;
+  font-family: "Livvic", sans-serif; /* Adicionando a fonte Livvic */
+  font-weight: bold;
 `;
 
-// Descrição do produto
 export const ProductDesc = styled.p`
-  font-size: 14px; /* Fonte um pouco menor */
-  color: #666; /* Cor mais suave */
+  font-size: 14px;
+  color: #666;
   margin-bottom: 20px;
-  line-height: 1.5; /* Melhora a legibilidade */
+  line-height: 1.5;
+  font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins */
 `;
 
-// Preço do produto
 export const ProductPrice = styled.p`
-  font-size: 22px; /* Ajuste na fonte do preço */
-  color: #e63946; /* Cor para o preço */
+  font-size: 22px;
+  color: #f66f00;
   font-weight: bold;
   margin-bottom: 20px;
+  font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins */
 `;
 
-// Botão de adicionar ao carrinho
 export const AddToCartButton = styled.button`
-  background-color: #ffcc00; /* Cor semelhante ao botão do Mercado Livre */
-  color: #333; /* Cor do texto do botão */
-  border: none; /* Sem borda */
-  border-radius: 4px; /* Bordas arredondadas */
-  padding: 12px 24px; /* Tamanho do botão */
+  background-color: #f66f00;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%; /* O botão ocupa toda a largura disponível */
-  max-width: 300px; /* Limita a largura do botão */
+  width: 100%;
+  font-family: "Livvic", sans-serif; /* Adicionando a fonte Livvic no botão */
 
   &:hover {
-    background-color: #e0a800; /* Cor do botão ao passar o mouse */
+    background-color: #ae4f00;
   }
 `;
 
-// Estilos para a seção de avaliações
 export const ReviewsContainer = styled.div`
-  margin: 20px 0;
-  background-color: #fff; /* Cor de fundo branca */
+  background-color: #fff;
   padding: 20px;
-  border-radius: 8px; /* Bordas arredondadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Espaço acima do container de reviews */
+  width: 100%; /* Para que a seção ocupe toda a largura disponível */
+  max-width: 1200px; /* Para limitar a largura máxima, se necessário */
+  margin: auto; /* Para centralizar na página */
 `;
 
 export const ReviewForm = styled.form`
@@ -94,12 +92,32 @@ export const ReviewInput = styled.textarea`
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  resize: none; /* Desabilita a redimensionação */
+  resize: none;
+  font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins */
+`;
+
+export const AddRatingButton = styled.button`
+  background-color: #f66f00;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  max-width: 300px;
+  margin-top: 1em;
+  font-family: "Livvic", sans-serif; /* Adicionando a fonte Livvic no botão */
+
+  &:hover {
+    background-color: #ae4f00;
+  }
 `;
 
 export const StarRating = styled.div`
   display: flex;
   align-items: center;
+  margin: 0.5em 0 1em 0;
 `;
 
 export const Star = styled.div`
@@ -114,6 +132,7 @@ export const ReviewList = styled.div`
 export const ReviewItem = styled.div`
   margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid #ddd; /* Borda para cada avaliação */
+  border: 1px solid #ddd;
   border-radius: 4px;
+  font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins para as avaliações */
 `;

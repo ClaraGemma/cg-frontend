@@ -36,11 +36,12 @@ export const ProductTitle = styled.h3`
   font-size: 18px;
   margin: 0;
   color: #333;
-  cursor: pointer; /* Adiciona um ponteiro ao passar sobre o título */
-  transition: color 0.3s ease; /* Transição suave para a cor */
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-family: "Livvic", sans-serif;
 
   &:hover {
-    color: #007bff; /* Altera a cor ao passar o mouse */
+    color: #f66f00;
   }
 `;
 
@@ -48,6 +49,7 @@ export const ProductDesc = styled.p`
   font-size: 14px;
   color: #666;
   margin: 8px 0;
+  font-family: "Poppins", sans-serif;
 `;
 
 export const ProductPriceContainer = styled.div`
@@ -59,22 +61,24 @@ export const ProductPriceContainer = styled.div`
 
 export const ProductPrice = styled.p`
   font-size: 16px;
-  color: #007bff;
+  color: #f66f00;
   margin: 0;
+  font-family: "Poppins", sans-serif;
 `;
 
 export const AddToCartButton = styled.button`
-  background-color: #28a745;
+  background-color: #f66f00;
   color: #fff;
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
+  font-family: "Livvic", sans-serif;
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #218838;
+    background-color: #ae4f00;
   }
 `;
 
@@ -86,5 +90,6 @@ export const DeleteButton = styled.button`
   padding: 8px 16px;
   cursor: pointer;
   font-size: 14px;
+  font-family: "Livvic", sans-serif;
   transition: background-color 0.3s ease;
 `;

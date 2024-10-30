@@ -1,24 +1,16 @@
-import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import Footer from "../../components/Footer/Footer";
 import { MainContainer, ContentWrapper, Section, Header } from "./styles";
 
 function Empresa() {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
-
   return (
     <>
-      <NavbarResponsive
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-      />
-      <Navbar setMenuIsVisible={setMenuIsVisible} />
+      <Navbar />
       <MainContainer>
         <ContentWrapper>
           <Section>
             <Header>
-              <h1>Quem somos</h1>
+              <h1>Quem Somos</h1>
               <hr />
             </Header>
             <p>
@@ -28,8 +20,8 @@ function Empresa() {
               e chaveiros. Cada peça é cuidadosamente feita à mão, com atenção
               aos detalhes e um toque de criatividade, para garantir que você
               tenha algo único e especial.
-              <br />
-              <br />
+            </p>
+            <p>
               Nosso compromisso é oferecer produtos que sejam não apenas lindos,
               mas também carreguem significado. Sabemos que cada pessoa tem um
               estilo e uma história, por isso, nossos acessórios são totalmente
@@ -49,9 +41,8 @@ function Empresa() {
               beleza; eles devem contar histórias e criar conexões emocionais.
               Nossa paixão pela resina nos leva a experimentar novas técnicas e
               designs, garantindo inovação constante em nossos produtos.
-              <br />
-              <br />
-              <br />
+            </p>
+            <p>
               Acompanhe-nos nas redes sociais e fique por dentro das nossas
               novidades e lançamentos. Estamos ansiosos para criar algo incrível
               para você!

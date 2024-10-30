@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import Footer from "../../components/Footer/Footer";
 
 import {
@@ -19,11 +18,10 @@ import {
 } from "./styles";
 
 function ProfileUser() {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: "Nome do Usuário",
-    email: "usuario@email.com",
+    name: "Lucas",
+    email: "lucas@email.com",
     password: "********",
   });
 
@@ -47,12 +45,7 @@ function ProfileUser() {
 
   return (
     <>
-      <NavbarResponsive
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-      />
-      <Navbar setMenuIsVisible={setMenuIsVisible} />
-
+      <Navbar />
       <Container>
         <ProfileBox>
           <ProfileInfo>

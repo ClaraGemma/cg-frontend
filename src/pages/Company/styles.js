@@ -3,24 +3,24 @@ import styled from "styled-components";
 export const MainContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Alinha o conteúdo na parte superior */
   margin: 8rem 5rem 10rem 5rem;
 `;
 
 export const ContentWrapper = styled.div`
   max-width: 75%;
+  font-family: "Poppins", sans-serif; /* Fonte Poppins para o texto */
 `;
 
 export const Section = styled.section`
-  // background-color: yellow;
-  padding: 1rem;
+  padding: 2rem 0; /* Mais espaçamento vertical entre seções */
 
   p {
     color: var(--primary-text-color);
     font-weight: 400;
-    font-size: 20px;
-    word-wrap: break-word;
+    font-size: 18px; /* Reduzido um pouco para melhor legibilidade */
     margin-top: 1rem;
+    line-height: 1.6; /* Melhora a legibilidade com mais espaçamento entre linhas */
   }
 `;
 
@@ -32,13 +32,14 @@ export const Header = styled.header`
     margin-right: 1rem;
     color: var(--primary-text-color);
     font-weight: bold;
-    font-size: 24px;
+    font-size: 28px; /* Tamanho maior para o título */
+    font-family: "Livvic", sans-serif; /* Fonte Livvic para o título */
   }
 
   hr {
     flex-grow: 1;
     border: none;
-    height: 1px;
+    height: 2px; /* Espessura do separador aumentada para destaque */
     background-color: black;
   }
 `;

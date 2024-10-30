@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AiFillStar } from "react-icons/ai"; // Importando ícones de estrela
+import { AiFillStar } from "react-icons/ai";
 import Navbar from "../../components/Navbar/Navbar";
-import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import Footer from "../../components/Footer/Footer";
 
@@ -17,6 +16,7 @@ import {
   ReviewsContainer,
   ReviewForm,
   ReviewInput,
+  AddRatingButton,
   StarRating,
   Star,
   ReviewList,
@@ -24,13 +24,12 @@ import {
 } from "./styles";
 
 const ProductDetail = () => {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [reviews, setReviews] = useState([]); // Estado para armazenar comentários e avaliações
-  const [newReview, setNewReview] = useState({ rating: 0, comment: "" }); // Estado para o novo comentário
+  const [reviews, setReviews] = useState([]);
+  const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -41,7 +40,7 @@ const ProductDetail = () => {
         }
         const data = await response.json();
         setProduct(data);
-        setReviews(data.reviews || []); // Presumindo que os dados do produto incluem avaliações
+        setReviews(data.reviews || []);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -64,7 +63,7 @@ const ProductDetail = () => {
     e.preventDefault();
     if (newReview.rating > 0 && newReview.comment) {
       setReviews((prev) => [...prev, newReview]);
-      setNewReview({ rating: 0, comment: "" }); // Resetar o formulário
+      setNewReview({ rating: 0, comment: "" });
     }
   };
 
@@ -73,11 +72,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      <NavbarResponsive
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-      />
-      <Navbar setMenuIsVisible={setMenuIsVisible} />
+      <Navbar />
       <Breadcrumbs currentProductName={product.title} />
 
       <ProductDetailContainer>
@@ -88,14 +83,14 @@ const ProductDetail = () => {
         <ProductInfo>
           <ProductTitle>{product.title}</ProductTitle>
           <ProductDesc>{product.desc}</ProductDesc>
-          <ProductPrice>Preço: ${product.price.toFixed(2)}</ProductPrice>
+          <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
           <AddToCartButton>Adicionar ao Carrinho</AddToCartButton>
         </ProductInfo>
       </ProductDetailContainer>
 
-      {/* Seção de Avaliações */}
       <ReviewsContainer>
-        <h2>Avaliações</h2>
+        <h2 style={{ fontFamily: "Livvic" }}>Deixe sua avaliação</h2>{" "}
+        {/* Estilizando título com Livvic */}
         <ReviewForm onSubmit={handleReviewSubmit}>
           <StarRating>
             {[1, 2, 3, 4, 5].map((star) => (
@@ -115,7 +110,7 @@ const ProductDetail = () => {
             value={newReview.comment}
             onChange={handleReviewChange}
           />
-          <AddToCartButton type="submit">Enviar Avaliação</AddToCartButton>
+          <AddRatingButton type="submit">Enviar Avaliação</AddRatingButton>
         </ReviewForm>
         <ReviewList>
           {reviews.map((review, index) => (
@@ -128,11 +123,15 @@ const ProductDetail = () => {
                   />
                 ))}
               </StarRating>
-              <p>{review.comment}</p>
+              <p style={{ fontFamily: "Poppins", marginTop: "8px" }}>
+                {review.comment}
+              </p>{" "}
+              {/* Texto da avaliação em Poppins */}
             </ReviewItem>
           ))}
         </ReviewList>
       </ReviewsContainer>
+
       <Footer />
     </>
   );

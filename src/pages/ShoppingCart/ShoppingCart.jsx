@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar";
-import NavbarResponsive from "../../components/NavbarResponsive/NavbarResponsive";
 import Footer from "../../components/Footer/Footer";
 import {
   Container,
@@ -11,7 +10,6 @@ import {
 } from "./styles";
 
 const ShoppingCart = () => {
-  const [menuIsVisible, setMenuIsVisible] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
@@ -61,11 +59,7 @@ const ShoppingCart = () => {
 
   return (
     <>
-      <NavbarResponsive
-        menuIsVisible={menuIsVisible}
-        setMenuIsVisible={setMenuIsVisible}
-      />
-      <Navbar setMenuIsVisible={setMenuIsVisible} />
+      <Navbar />
       <Container>
         <Header>
           <h1>Meu Carrinho</h1>

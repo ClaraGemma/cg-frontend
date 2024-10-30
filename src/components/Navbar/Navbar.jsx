@@ -1,37 +1,31 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 import logo from "../../assets/logo_navbar.svg";
-import { FaBars } from "react-icons/fa";
 import {
   Container,
   List,
-  Item,
   Logo,
-  Box,
+  NavItems,
+  Item,
   ButtonContainer,
   Button,
-  More,
   Dropdown,
   DropdownButton,
   DropdownMenu,
   DropdownItem,
 } from "./styles";
 
-function Navbar({ setMenuIsVisible }) {
+function Navbar() {
   const location = useLocation();
   const [userName, setUserName] = useState(null);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   useEffect(() => {
-    // Recupera o nome do usuário do localStorage
     const name = localStorage.getItem("userName");
     setUserName(name);
   }, []);
 
-  const handleDropdownToggle = () => {
-    setIsDropdownVisible(!isDropdownVisible);
-  };
+  const handleDropdownToggle = () => setIsDropdownVisible(!isDropdownVisible);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -42,15 +36,15 @@ function Navbar({ setMenuIsVisible }) {
   return (
     <Container>
       <List>
-        <Logo className="logo1">
-          <Link to={"/home"}>
+        <Logo>
+          <Link to="/home">
             <img src={logo} alt="Cost" />
           </Link>
         </Logo>
-        <Box>
+        <NavItems>
           <Item>
             <Link
-              to={"/home"}
+              to="/home"
               className={location.pathname === "/home" ? "active" : ""}
             >
               Home
@@ -58,7 +52,7 @@ function Navbar({ setMenuIsVisible }) {
           </Item>
           <Item>
             <Link
-              to={"/produtos"}
+              to="/produtos"
               className={location.pathname === "/produtos" ? "active" : ""}
             >
               Produtos
@@ -66,7 +60,7 @@ function Navbar({ setMenuIsVisible }) {
           </Item>
           <Item>
             <Link
-              to={"/noticia"}
+              to="/noticia"
               className={location.pathname === "/noticia" ? "active" : ""}
             >
               Notícias
@@ -74,14 +68,13 @@ function Navbar({ setMenuIsVisible }) {
           </Item>
           <Item>
             <Link
-              to={"/empresa"}
+              to="/empresa"
               className={location.pathname === "/empresa" ? "active" : ""}
             >
               Empresa
             </Link>
           </Item>
-        </Box>
-
+        </NavItems>
         <ButtonContainer>
           {userName ? (
             <Dropdown>
@@ -105,25 +98,16 @@ function Navbar({ setMenuIsVisible }) {
           ) : (
             <>
               <Button>
-                <Link to={"/registrar"}>Registrar-se</Link>
+                <Link to="/registrar">Registrar-se</Link>
               </Button>
               <Button>
-                <Link to={"/login"}>Entrar</Link>
+                <Link to="/login">Entrar</Link>
               </Button>
             </>
           )}
         </ButtonContainer>
-
-        <More>
-          <FaBars onClick={() => setMenuIsVisible(true)} />
-        </More>
       </List>
     </Container>
   );
 }
-
-Navbar.propTypes = {
-  setMenuIsVisible: PropTypes.func.isRequired,
-};
-
 export default Navbar;
