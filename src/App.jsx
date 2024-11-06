@@ -10,6 +10,7 @@ import Login from "./pages/Login/Login";
 import Administrator from "./pages/Administrator/Administrator";
 import ProfileUser from "./pages/ProfileUser/ProfileUser";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import SuccessPage from "./pages/SuccessPage/SuccessPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 import "./App.css";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/registrar" element={<Registrar />} />
         <Route path="/login" element={<Login />} />
         <Route path="/meucarrinho" element={<ShoppingCart />} />
+        <Route path="/success" element={<SuccessPage />} />
 
         <Route
           path="/admin"

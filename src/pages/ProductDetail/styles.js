@@ -117,7 +117,7 @@ export const AddRatingButton = styled.button`
 export const StarRating = styled.div`
   display: flex;
   align-items: center;
-  margin: 0.5em 0 1em 0;
+  margin: 0.5em 0 0.5em 0;
 `;
 
 export const Star = styled.div`

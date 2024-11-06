@@ -16,6 +16,7 @@ export const Header = styled.header`
 
   h1 {
     font-size: 24px;
+    font-family: "Livvic", sans-serif;
     color: #333;
   }
 `;
@@ -43,11 +44,13 @@ export const CartItem = styled.div`
 
     h2 {
       font-size: 18px;
+      font-family: "Livvic", sans-serif;
       color: #333;
     }
 
     p {
       margin: 5px 0;
+      font-family: "Poppins", sans-serif;
       color: #666;
     }
   }
@@ -62,6 +65,7 @@ export const CartItem = styled.div`
       color: #333;
       border: 1px solid #ccc;
       padding: 5px 10px;
+      font-family: "Livvic", sans-serif;
       font-size: 18px;
       cursor: pointer;
       transition: background-color 0.2s;
@@ -86,6 +90,7 @@ export const CartItem = styled.div`
     background-color: #ff6f61;
     color: white;
     border: none;
+    font-family: "Livvic", sans-serif;
     padding: 10px 20px;
     cursor: pointer;
 
@@ -105,11 +110,13 @@ export const CartFooter = styled.footer`
   .total {
     h2 {
       font-size: 20px;
+      font-family: "Livvic", sans-serif;
       color: #333;
     }
 
     p {
       font-size: 24px;
+      font-family: "Poppins", sans-serif;
       color: #333;
     }
   }

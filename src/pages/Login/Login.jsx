@@ -55,7 +55,7 @@ function Login() {
         validationSchema={validationLogin}
       >
         <StyledForm>
-          <h1>Admin Login</h1>
+          <h1>Login</h1>
           <p>Use o email e senha disponibilizados.</p>
           <LoginFormGroup>
             <StyledField name="email" type="text" placeholder="E-mail" />

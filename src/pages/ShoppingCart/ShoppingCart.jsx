@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Importa o hook de navegação
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import {
@@ -11,6 +12,7 @@ import {
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
+  const navigate = useNavigate(); // Cria a instância do hook de navegação
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -38,46 +40,54 @@ const ShoppingCart = () => {
     fetchCartItems();
   }, []);
 
-  const handleRemoveItem = async (itemId) => {
+  const handleRemoveItem = async (productId) => {
     try {
-      await fetch(`http://localhost:3000/cart/remove/${itemId}`, {
-        method: "DELETE",
+      const response = await fetch(
+        `http://localhost:3000/cart/remove/${productId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        // Sucesso
+        console.log("Item removido com sucesso");
+        setCartItems(cartItems.filter((item) => item.id !== productId));
+      } else {
+        // Erro no servidor
+        const data = await response.json();
+        console.error("Erro:", data.message);
+      }
+    } catch (error) {
+      console.error("Erro de rede:", error);
+    }
+  };
+
+  const handleCheckout = async () => {
+    try {
+      // Aqui pode ser feito o processo de pagamento ou envio dos dados para o backend
+      // Após isso, redireciona para a página de sucesso
+      await fetch("http://localhost:3000/cart/clear", {
+        method: "DELETE", // Endpoint para limpar o carrinho
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      setCartItems((prevItems) =>
-        prevItems.filter((item) => item.id !== itemId)
-      );
+
+      // Limpa o estado do carrinho
+      setCartItems([]);
+
+      // Redireciona para a página de sucesso
+      navigate("/success");
     } catch (error) {
-      console.error("Erro ao remover item do carrinho:", error);
+      console.error("Erro ao finalizar a compra:", error);
     }
   };
-
-  const handleIncreaseQuantity = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
-      )
-    );
-  };
-
-  const handleDecreaseQuantity = (itemId) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === itemId && item.quantity > 1
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
-    );
-  };
-
-  // const calculateTotal = () => {
-  //   return cartItems
-  //     .reduce((total, item) => total + item.product.price * item.quantity, 0)
-  //     .toFixed(2);
-  // };
 
   return (
     <>
@@ -98,32 +108,21 @@ const ShoppingCart = () => {
                   <div className="item-details">
                     <h2>{item.product.title}</h2>
                     <p>R$ {item.product.price.toFixed(2)}</p>
-                    <p>Quantidade: {item.quantity}</p>
+                    <p>Quantidade: 1</p>
                   </div>
                 </>
               )}
-              <div className="quantity-controls">
-                <button onClick={() => handleDecreaseQuantity(item.id)}>
-                  -
-                </button>
-                <span>{item.quantity}</span>
-                <button onClick={() => handleIncreaseQuantity(item.id)}>
-                  +
-                </button>
-              </div>
               <button onClick={() => handleRemoveItem(item.id)}>Remover</button>
             </CartItem>
           ))}
         </CartItemContainer>
-        {cartItems.map((item) => (
-          <CartFooter key={item.id}>
-            <div className="total">
-              <h2>Total</h2>
-              <p>R$ {item.product.price.toFixed(2)}</p>
-            </div>
-            <button>Finalizar Compra</button>
-          </CartFooter>
-        ))}
+        <CartFooter>
+          <div className="total">
+            <h2>Total</h2>
+            <p>R$ 22.00</p>
+          </div>
+          <button onClick={handleCheckout}>Finalizar Compra</button>
+        </CartFooter>
       </Container>
       <Footer />
     </>

@@ -52,19 +52,24 @@ export const BoxPanel = styled.div`
   border-radius: 5px;
   padding: 1em;
   margin: 20px 0;
+
+  /* Limita a altura do BoxPanel e permite rolagem */
+  max-height: 700px; /* Definindo o limite máximo de altura */
+  overflow-y: auto; /* Ativa o scroll vertical quando o conteúdo ultrapassar a altura */
 `;
 
 export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+`;
 
-  h1 {
-    font-family: "Livvic", sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    color: #ffffff;
-  }
+export const TitlePanel = styled.h1`
+  font-family: "Livvic", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
 `;
 
 export const Button = styled.button`

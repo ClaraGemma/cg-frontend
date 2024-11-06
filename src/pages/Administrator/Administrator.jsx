@@ -11,6 +11,7 @@ import {
   Box,
   BoxPanel,
   Header,
+  TitlePanel,
   Button,
   Container,
   ContainerPanel,
@@ -108,7 +109,7 @@ function Administrator() {
       <ContainerPanel>
         <BoxPanel>
           <Header>
-            <h1>Painel de Notícias</h1>
+            <TitlePanel>Painel de Notícias</TitlePanel>
             <Button onClick={() => setOpenModal(true)}>
               <p>Nova Postagem</p>
               <StyledIoAddCircle />
@@ -125,7 +126,7 @@ function Administrator() {
 
         <BoxPanel>
           <Header>
-            <h1>Painel de Produtos</h1>
+            <TitlePanel>Painel de Produtos</TitlePanel>
             <Button onClick={() => setOpenModalPr(true)}>
               <p>Novo Produto</p>
               <StyledIoAddCircle />

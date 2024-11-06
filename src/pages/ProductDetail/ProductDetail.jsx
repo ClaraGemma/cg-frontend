@@ -31,9 +31,15 @@ const ProductDetail = () => {
   const [error, setError] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
-  const userName = localStorage.getItem("userName");
+  const [userName, setUserName] = useState(localStorage.getItem("userName"));
 
   useEffect(() => {
+    // Verifica se o nome do usuário foi salvo no localStorage
+    const storedUserName = localStorage.getItem("userName");
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+
     const fetchProductDetails = async () => {
       try {
         const productResponse = await fetch(
