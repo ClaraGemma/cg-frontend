@@ -4,14 +4,24 @@ import { Container, Message, Button } from "./styles"; // Importando os estilos
 const SuccessPage = () => {
   const navigate = useNavigate();
 
-  const handleGoHome = () => {
+  const handleWhatsAppContact = () => {
+    const phoneNumber = "5511999999999"; // Insira o número com código do país e DDD
+    const message = "Olá! Gostaria de continuar com o próximo passo.";
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(url, "_blank"); // Abre o WhatsApp em uma nova aba
     navigate("/"); // Redireciona para a página inicial
   };
 
   return (
     <Container>
-      <Message>Compra realizada com sucesso! Parabéns!</Message>
-      <Button onClick={handleGoHome}>Voltar para Home</Button>
+      <Message>
+        Parabéns pela sua conquista! Agora, o próximo passo é falar conosco pelo
+        WhatsApp.
+      </Message>
+      <Button onClick={handleWhatsAppContact}>Fale conosco!</Button>
     </Container>
   );
 };

@@ -121,7 +121,7 @@ const ShoppingCart = () => {
             <h2>Total</h2>
             <p>R$ 22.00</p>
           </div>
-          <button onClick={handleCheckout}>Finalizar Compra</button>
+          <button onClick={handleCheckout}>Prosseguir</button>
         </CartFooter>
       </Container>
       <Footer />
