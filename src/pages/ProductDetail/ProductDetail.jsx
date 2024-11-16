@@ -21,7 +21,6 @@ import {
   Star,
   ReviewList,
   ReviewItem,
-  ReviewerName,
 } from "./styles";
 
 const ProductDetail = () => {
@@ -156,7 +155,6 @@ const ProductDetail = () => {
         <ReviewList>
           {reviews.map((review, index) => (
             <ReviewItem key={index}>
-              <ReviewerName>{review.userName}</ReviewerName>
               <StarRating>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <AiFillStar
