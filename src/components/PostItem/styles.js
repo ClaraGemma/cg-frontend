@@ -30,6 +30,12 @@ export const TrashDateBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  span {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+  }
 `;
 
 export const StyledFaTrash = styled(FaTrash)`
