@@ -42,6 +42,18 @@ export const Contact = styled.div`
     font-size: 1.5rem; /* Ajuste do tamanho do ícone */
     color: #f8f9f0; /* Cor do ícone */
   }
+
+  a {
+    color: #f8f9f0; /* Cor do link */
+    text-decoration: none; /* Remover o sublinhado */
+    font-size: 1rem;
+    margin-left: 0.5rem;
+
+    &:hover {
+      color: #ffc107; /* Cor de hover */
+      text-decoration: underline; /* Sublinhado no hover */
+    }
+  }
 `;
 
 export const MapContainer = styled.div`

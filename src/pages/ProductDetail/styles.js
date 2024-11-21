@@ -53,6 +53,42 @@ export const ProductPrice = styled.p`
   font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins */
 `;
 
+export const ColorOptions = styled.div`
+  margin-top: 20px;
+
+  p {
+    font-size: 16px;
+    color: #333;
+    font-family: "Poppins", sans-serif;
+  }
+`;
+
+export const SizeOptions = styled.div`
+  margin-top: 20px;
+
+  p {
+    font-size: 16px;
+    color: #333;
+    font-family: "Poppins", sans-serif;
+  }
+`;
+
+export const OptionButton = styled.button`
+  background-color: ${({ selected }) => (selected ? "#f66f00" : "#f5f5f5")};
+  color: ${({ selected }) => (selected ? "#fff" : "#333")};
+  border: 1px solid ${({ selected }) => (selected ? "#f66f00" : "#ddd")};
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: ${({ selected }) => (selected ? "#ae4f00" : "#ddd")};
+  }
+`;
+
 export const AddToCartButton = styled.button`
   background-color: #f66f00;
   color: #fff;
@@ -137,4 +173,22 @@ export const ReviewItem = styled.div`
   border: 1px solid #ddd;
   border-radius: 4px;
   font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins para as avaliações */
+`;
+
+export const QuantityOptions = styled.div`
+  margin: 20px 0;
+  p {
+    font-size: 16px;
+    color: #333;
+    font-family: "Poppins", sans-serif;
+  }
+  select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-family: "Poppins", sans-serif;
+    margin-top: 10px;
+    width: 100px;
+    font-size: 14px;
+  }
 `;

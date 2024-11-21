@@ -13,6 +13,10 @@ import {
   ProductDesc,
   ProductPrice,
   AddToCartButton,
+  ColorOptions,
+  SizeOptions,
+  OptionButton,
+  QuantityOptions,
   ReviewsContainer,
   ReviewForm,
   ReviewInput,
@@ -31,9 +35,11 @@ const ProductDetail = () => {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [userName, setUserName] = useState(localStorage.getItem("userName"));
+  const [selectedColor, setSelectedColor] = useState("preto"); // Preto selecionado por padrão
+  const [selectedSize, setSelectedSize] = useState("10cm"); // 10cm selecionado por padrão
+  const [selectedQuantity, setSelectedQuantity] = useState(1); // Quantidade selecionada, 1 por padrão
 
   useEffect(() => {
-    // Verifica se o nome do usuário foi salvo no localStorage
     const storedUserName = localStorage.getItem("userName");
     if (storedUserName) {
       setUserName(storedUserName);
@@ -75,6 +81,41 @@ const ProductDetail = () => {
     }));
   };
 
+  const handleAddToCart = async (productId) => {
+    console.log("Adicionando produto com ID:", productId);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setError("Usuário não está autenticado.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:3000/cart/add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          productId,
+          quantity: selectedQuantity,
+          color: selectedColor,
+          size: selectedSize,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "Erro ao adicionar ao carrinho.");
+      }
+
+      alert(data.message);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
 
@@ -86,7 +127,7 @@ const ProductDetail = () => {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`, // Token do usuário logado
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({
               rating: newReview.rating,
@@ -100,7 +141,7 @@ const ProductDetail = () => {
         }
 
         const savedReview = await response.json();
-        setReviews((prev) => [...prev, { ...savedReview, userName }]); // Adiciona a nova avaliação
+        setReviews((prev) => [...prev, { ...savedReview, userName }]);
         setNewReview({ rating: 0, comment: "" });
       } catch (error) {
         setError("Erro ao enviar avaliação.");
@@ -125,10 +166,55 @@ const ProductDetail = () => {
           <ProductTitle>{product.title}</ProductTitle>
           <ProductDesc>{product.desc}</ProductDesc>
           <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
-          <AddToCartButton>Adicionar ao Carrinho</AddToCartButton>
+
+          {/* Seleção de Cor */}
+          <ColorOptions>
+            <p>Cor:</p>
+            {["azul", "branco", "preto", "vermelho", "verde"].map((color) => (
+              <OptionButton
+                key={color}
+                selected={selectedColor === color}
+                onClick={() => setSelectedColor(color)}
+              >
+                {color}
+              </OptionButton>
+            ))}
+          </ColorOptions>
+
+          {/* Seleção de Tamanho */}
+          <SizeOptions>
+            <p>Tamanho:</p>
+            {["5cm", "7cm", "10cm", "15cm", "20cm"].map((size) => (
+              <OptionButton
+                key={size}
+                selected={selectedSize === size}
+                onClick={() => setSelectedSize(size)}
+              >
+                {size}
+              </OptionButton>
+            ))}
+          </SizeOptions>
+
+          {/* Seleção de Quantidade */}
+          <QuantityOptions>
+            <p>Quantidade:</p>
+            <select
+              value={selectedQuantity}
+              onChange={(e) => setSelectedQuantity(Number(e.target.value))}
+            >
+              {[...Array(10).keys()].map((i) => (
+                <option key={i + 1} value={i + 1}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
+          </QuantityOptions>
+
+          <AddToCartButton onClick={() => handleAddToCart(product.id)}>
+            Adicionar ao Carrinho
+          </AddToCartButton>
         </ProductInfo>
       </ProductDetailContainer>
-
       <ReviewsContainer>
         <h2 style={{ fontFamily: "Livvic" }}>Deixe sua avaliação</h2>
         <ReviewForm onSubmit={handleReviewSubmit}>
@@ -170,7 +256,6 @@ const ProductDetail = () => {
           ))}
         </ReviewList>
       </ReviewsContainer>
-
       <Footer />
     </>
   );

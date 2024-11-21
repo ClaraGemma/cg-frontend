@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // Importa o hook de navegação
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import {
@@ -12,7 +12,7 @@ import {
 
 const ShoppingCart = () => {
   const [cartItems, setCartItems] = useState([]);
-  const navigate = useNavigate(); // Cria a instância do hook de navegação
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCartItems = async () => {
@@ -30,7 +30,6 @@ const ShoppingCart = () => {
         }
 
         const data = await response.json();
-        console.log(data);
         setCartItems(data);
       } catch (error) {
         console.error("Erro ao buscar itens do carrinho:", error);
@@ -54,11 +53,8 @@ const ShoppingCart = () => {
       );
 
       if (response.ok) {
-        // Sucesso
-        console.log("Item removido com sucesso");
         setCartItems(cartItems.filter((item) => item.id !== productId));
       } else {
-        // Erro no servidor
         const data = await response.json();
         console.error("Erro:", data.message);
       }
@@ -69,24 +65,17 @@ const ShoppingCart = () => {
 
   const handleCheckout = async () => {
     try {
-      // Aqui pode ser feito o processo de pagamento ou envio dos dados para o backend
-      // Após isso, redireciona para a página de sucesso
-      await fetch("http://localhost:3000/cart/clear", {
-        method: "DELETE", // Endpoint para limpar o carrinho
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-
-      // Limpa o estado do carrinho
-      setCartItems([]);
-
-      // Redireciona para a página de sucesso
-      navigate("/success");
+      navigate("/review", { state: { cartItems } });
     } catch (error) {
-      console.error("Erro ao finalizar a compra:", error);
+      console.error("Erro ao prosseguir com o pedido:", error);
     }
+  };
+
+  const calculateTotal = () => {
+    return cartItems.reduce(
+      (total, item) => total + (item.product.price || 0) * item.quantity,
+      0
+    );
   };
 
   return (
@@ -107,19 +96,22 @@ const ShoppingCart = () => {
                   />
                   <div className="item-details">
                     <h2>{item.product.title}</h2>
-                    <p>R$ {item.product.price.toFixed(2)}</p>
-                    <p>Quantidade: 1</p>
+                    <p className="description">{item.product.desc}</p>
+                    <p className="price">
+                      R$ {(item.product.price * item.quantity).toFixed(2)}
+                    </p>
+                    Valor aplicado à {item.quantity} produto(s).
                   </div>
                 </>
               )}
-              <button onClick={() => handleRemoveItem(item.id)}>Remover</button>
+              <button onClick={() => handleRemoveItem(item.id)}>Deletar</button>
             </CartItem>
           ))}
         </CartItemContainer>
         <CartFooter>
           <div className="total">
             <h2>Total</h2>
-            <p>R$ 22.00</p>
+            <p>R$ {calculateTotal().toFixed(2)}</p>
           </div>
           <button onClick={handleCheckout}>Prosseguir</button>
         </CartFooter>

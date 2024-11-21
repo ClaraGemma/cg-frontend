@@ -43,59 +43,39 @@ export const CartItem = styled.div`
     flex: 1;
 
     h2 {
-      font-size: 18px;
+      font-size: 20px; /* Título maior */
       font-family: "Livvic", sans-serif;
       color: #333;
+      margin: 0 0 5px 0; /* Adiciona espaçamento abaixo do título */
     }
 
-    p {
-      margin: 5px 0;
+    .description {
+      font-size: 14px; /* Descrição menor */
       font-family: "Poppins", sans-serif;
       color: #666;
-    }
-  }
-
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-
-    button {
-      background-color: #eee;
-      color: #333;
-      border: 1px solid #ccc;
-      padding: 5px 10px;
-      font-family: "Livvic", sans-serif;
-      font-size: 18px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-
-      &:hover {
-        background-color: #ddd;
-      }
-
-      &:disabled {
-        color: #aaa;
-        cursor: not-allowed;
-      }
+      margin: 5px 0;
     }
 
-    span {
-      font-size: 16px;
-      margin: 0 8px;
+    .price {
+      font-size: 18px; /* Preço maior */
+      font-family: "Poppins", sans-serif;
+      color: #f66f00; /* Cor laranja */
+      margin: 10px 0;
     }
   }
 
   button {
-    background-color: #ff6f61;
+    background-color: #e53935;
     color: white;
     border: none;
-    font-family: "Livvic", sans-serif;
-    padding: 10px 20px;
+    margin-right: 20px;
+    padding: 8px 16px;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
 
     &:hover {
-      background-color: #ff3b2b;
+      background-color: #d32f2f;
     }
   }
 `;
@@ -125,8 +105,11 @@ export const CartFooter = styled.footer`
     background-color: #4caf50;
     color: white;
     border: none;
-    padding: 15px 30px;
+    padding: 12px 24px;
     cursor: pointer;
+    border-radius: 8px;
+    font-family: "Livvic", sans-serif;
+    font-size: 16px;
 
     &:hover {
       background-color: #388e3c;

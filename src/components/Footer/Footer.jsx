@@ -16,15 +16,21 @@ function Footer() {
           <h1>Entre em Contato Conosco!</h1>
           <Contact>
             <FaWhatsapp style={{ marginRight: "0.5rem" }} />
-            <p>(99) 99999-9999</p>
+            <p>(13) 99786-2433</p>
           </Contact>
           <Contact>
             <FaInstagram style={{ marginRight: "0.5rem" }} />
-            <p>claraegemm@</p>
+            <a
+              href="https://www.instagram.com/lasalletartresin/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              claraegemm@
+            </a>
           </Contact>
           <Contact>
             <FaEnvelope style={{ marginRight: "0.5rem" }} />
-            <p>email@email.com</p>
+            <p>claragemma@email.com</p>
           </Contact>
         </ContactUs>
         <MapContainer>
