@@ -35,9 +35,9 @@ const ProductDetail = () => {
   const [reviews, setReviews] = useState([]);
   const [newReview, setNewReview] = useState({ rating: 0, comment: "" });
   const [userName, setUserName] = useState(localStorage.getItem("userName"));
-  const [selectedColor, setSelectedColor] = useState("preto"); // Preto selecionado por padrão
-  const [selectedSize, setSelectedSize] = useState("10cm"); // 10cm selecionado por padrão
-  const [selectedQuantity, setSelectedQuantity] = useState(1); // Quantidade selecionada, 1 por padrão
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("userName");
@@ -63,6 +63,8 @@ const ProductDetail = () => {
 
         setProduct(productData);
         setReviews(reviewsData);
+        setSelectedColor(productData.colors[0]?.color);
+        setSelectedSize(productData.sizes[0]?.size);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -159,24 +161,35 @@ const ProductDetail = () => {
 
       <ProductDetailContainer>
         <ProductImage
-          src={`http://localhost:3000${product.image_url}`}
+          src={`http://localhost:3000${
+            product.colors.find((color) => color.color === selectedColor)
+              ?.image_url || product.image_url
+          }`}
           alt={product.title}
         />
         <ProductInfo>
           <ProductTitle>{product.title}</ProductTitle>
           <ProductDesc>{product.desc}</ProductDesc>
-          <ProductPrice>R$ {product.price.toFixed(2)}</ProductPrice>
+
+          {/* Preço Dinâmico com base no tamanho selecionado */}
+          <ProductPrice>
+            R${" "}
+            {product.sizes
+              .find((size) => size.size === selectedSize)
+              ?.price.toFixed(2)}
+            <span className="unit-text">(por unidade)</span>
+          </ProductPrice>
 
           {/* Seleção de Cor */}
           <ColorOptions>
             <p>Cor:</p>
-            {["azul", "branco", "preto", "vermelho", "verde"].map((color) => (
+            {product.colors.map((color) => (
               <OptionButton
-                key={color}
-                selected={selectedColor === color}
-                onClick={() => setSelectedColor(color)}
+                key={color.color}
+                selected={selectedColor === color.color}
+                onClick={() => setSelectedColor(color.color)}
               >
-                {color}
+                {color.color}
               </OptionButton>
             ))}
           </ColorOptions>
@@ -184,13 +197,13 @@ const ProductDetail = () => {
           {/* Seleção de Tamanho */}
           <SizeOptions>
             <p>Tamanho:</p>
-            {["5cm", "7cm", "10cm", "15cm", "20cm"].map((size) => (
+            {product.sizes.map((size) => (
               <OptionButton
-                key={size}
-                selected={selectedSize === size}
-                onClick={() => setSelectedSize(size)}
+                key={size.size}
+                selected={selectedSize === size.size}
+                onClick={() => setSelectedSize(size.size)}
               >
-                {size}
+                {size.size}
               </OptionButton>
             ))}
           </SizeOptions>
@@ -215,6 +228,7 @@ const ProductDetail = () => {
           </AddToCartButton>
         </ProductInfo>
       </ProductDetailContainer>
+
       <ReviewsContainer>
         <h2 style={{ fontFamily: "Livvic" }}>Deixe sua avaliação</h2>
         <ReviewForm onSubmit={handleReviewSubmit}>
@@ -239,23 +253,23 @@ const ProductDetail = () => {
           <AddRatingButton type="submit">Enviar Avaliação</AddRatingButton>
         </ReviewForm>
         <ReviewList>
-          {reviews.map((review, index) => (
-            <ReviewItem key={index}>
+          {reviews.map((review, idx) => (
+            <ReviewItem key={idx}>
               <StarRating>
                 {[1, 2, 3, 4, 5].map((star) => (
-                  <AiFillStar
-                    key={star}
-                    color={review.rating >= star ? "#ffcc00" : "#ccc"}
-                  />
+                  <Star key={star}>
+                    <AiFillStar
+                      color={review.rating >= star ? "#ffcc00" : "#ccc"}
+                    />
+                  </Star>
                 ))}
               </StarRating>
-              <p style={{ fontFamily: "Poppins", marginTop: "8px" }}>
-                {review.comment}
-              </p>
+              <div>{review.comment}</div>
             </ReviewItem>
           ))}
         </ReviewList>
       </ReviewsContainer>
+
       <Footer />
     </>
   );

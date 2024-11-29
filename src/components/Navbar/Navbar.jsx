@@ -84,10 +84,13 @@ function Navbar() {
               {isDropdownVisible && (
                 <DropdownMenu>
                   <DropdownItem>
-                    <Link to="/meuperfil">Meu perfil</Link>
+                    <Link to="/meucarrinho">Meu carrinho</Link>
                   </DropdownItem>
                   <DropdownItem>
-                    <Link to="/meucarrinho">Meu carrinho</Link>
+                    <Link to="/meuspedidos">Meus pedidos</Link>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <Link to="/meuperfil">Meu perfil</Link>
                   </DropdownItem>
                   <DropdownItem>
                     <button onClick={handleLogout}>Sair</button>

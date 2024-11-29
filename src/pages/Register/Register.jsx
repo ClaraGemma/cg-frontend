@@ -1,9 +1,11 @@
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import logo from "../../assets/logo_navbar.svg";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api.js";
 
 import {
+  Body,
   Container,
   StyledForm,
   RegisterFormGroup,
@@ -44,45 +46,63 @@ function Register() {
   });
 
   return (
-    <Container>
-      <Formik
-        initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={handleClickRegister}
-        validationSchema={validationLogin}
-      >
-        <StyledForm>
-          <h1>Registrar</h1>
-          <p>Registre-se para ter acesso aos nossos serviços!</p>
-          <RegisterFormGroup>
-            <StyledField name="name" type="text" placeholder="Nome" />
-            <StyledFaUser />
+    <Body>
+      <Container>
+        {" "}
+        <div className="phrase-column">
+          <img src={logo} alt="Clara & Gemma" />
+          <p>
+            Bem-vindo ao mundo da criatividade! Transforme seus momentos em
+            peças exclusivas e inesquecíveis!
+          </p>
+        </div>
+        <div className="form-container">
+          <Formik
+            initialValues={{ name: "", email: "", password: "" }}
+            onSubmit={handleClickRegister}
+            validationSchema={validationLogin}
+          >
+            <StyledForm>
+              <h1>Registrar</h1>
+              <p>Registre-se para ter acesso aos nossos serviços!</p>
+              <RegisterFormGroup>
+                <StyledField name="name" type="text" placeholder="Nome" />
+                <StyledFaUser />
 
-            <StyledErrorMessage component="span" name="name" />
-          </RegisterFormGroup>
+                <StyledErrorMessage component="span" name="name" />
+              </RegisterFormGroup>
 
-          <RegisterFormGroup>
-            <StyledField name="email" type="text" placeholder="E-mail" />
-            <StyledMdEmail />
+              <RegisterFormGroup>
+                <StyledField name="email" type="text" placeholder="E-mail" />
+                <StyledMdEmail />
 
-            <StyledErrorMessage component="span" name="email" />
-          </RegisterFormGroup>
+                <StyledErrorMessage component="span" name="email" />
+              </RegisterFormGroup>
 
-          <RegisterFormGroup>
-            <StyledField
-              name="password"
-              type="password"
-              placeholder="Crie uma senha"
-            />
-            <StyledFaLock />
+              <RegisterFormGroup>
+                <StyledField
+                  name="password"
+                  type="password"
+                  placeholder="Crie uma senha"
+                />
+                <StyledFaLock />
 
-            <StyledErrorMessage component="span" name="password" />
-          </RegisterFormGroup>
+                <StyledErrorMessage component="span" name="password" />
+              </RegisterFormGroup>
 
-          <Button type="submit">Registrar-se</Button>
-          <p>Já possui uma conta? Entre aqui!</p>
-        </StyledForm>
-      </Formik>
-    </Container>
+              <Button type="submit">Registrar-se</Button>
+
+              <p className="login-link">
+                Já possui uma conta?{" "}
+                <Link className="login" to="/login">
+                  Entre aqui!
+                </Link>
+              </p>
+            </StyledForm>
+          </Formik>
+        </div>
+      </Container>
+    </Body>
   );
 }
 

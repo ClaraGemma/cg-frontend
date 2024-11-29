@@ -22,6 +22,25 @@ export const Section = styled.section`
     margin-top: 1rem;
     line-height: 1.6; /* Melhora a legibilidade com mais espaçamento entre linhas */
   }
+
+  ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  ul li {
+    margin-bottom: 0.5rem;
+  }
+
+  ul li a {
+    color: var(--primary-color); /* Adicione sua cor primária */
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  ul li a:hover {
+    text-decoration: none; /* Remove o sublinhado no hover */
+  }
 `;
 
 export const Header = styled.header`

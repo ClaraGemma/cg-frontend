@@ -1,42 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import logo from "../../assets/logo_navbar.svg";
-import ModalBase from "../../components/Modals/ModalBase/ModalBase.jsx";
-import CreatePost from "../../components/Modals/CreatePost/CreatePost.jsx";
-import PostItem from "../../components/PostItem/PostItem";
-import CreateProduct from "../../components/Modals/CreateProduct/CreateProduct.jsx";
-import ProductItem from "../../components/ProductItem/ProductItem";
-
+import NavbarAdm from "../../components/NavbarAdm/NavbarAdm.jsx";
 import {
-  Box,
-  BoxPanel,
-  Header,
-  TitlePanel,
-  Button,
-  Container,
-  ContainerPanel,
-  Logo,
-  Nav,
-  StyledIoAddCircle,
-  StyledIoExit,
-  ProductItemContainer,
-  Pagination,
-  PaginationButton,
-} from "./styles.js";
+  DashboardContainer,
+  DashboardStats,
+  StatCard,
+  Description,
+} from "./styles";
 
 function Administrator() {
-  const [openModal, setOpenModal] = useState(false);
-  const [openModalPr, setOpenModalPr] = useState(false);
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
   const [isAdmin, setIsAdmin] = useState(false);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+  const [dashboardData, setDashboardData] = useState({
+    usuarios: 0,
+    produtos: 0,
+    noticias: 0,
+    pedidos: 0,
+  });
 
   useEffect(() => {
     const checkAdmin = async () => {
@@ -56,8 +36,9 @@ function Administrator() {
 
         if (data.isAdmin) {
           setIsAdmin(true);
+          fetchDashboardData();
         } else {
-          navigate("/");
+          navigate("/"); // Redirecionar para página inicial
         }
       } catch (error) {
         console.error("Erro ao verificar administrador:", error);
@@ -65,102 +46,90 @@ function Administrator() {
       }
     };
 
+    const fetchDashboardData = async () => {
+      const token = localStorage.getItem("token");
+
+      try {
+        const responses = await Promise.all([
+          fetch("http://localhost:3000/api/usuarios/contagem", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+          fetch("http://localhost:3000/api/produtos/contagem", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+          fetch("http://localhost:3000/api/noticias/contagem", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+          fetch("http://localhost:3000/api/pedidos/contagem", {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+        ]);
+
+        const [usuarios, produtos, noticias, pedidos] = await Promise.all(
+          responses.map((res) => res.json())
+        );
+
+        setDashboardData({
+          usuarios: usuarios.count,
+          produtos: produtos.count,
+          noticias: noticias.count,
+          pedidos: pedidos.count,
+        });
+      } catch (error) {
+        console.error("Erro ao carregar dados do dashboard:", error);
+      }
+    };
+
     checkAdmin();
   }, [navigate]);
-
-  // Função para buscar produtos com paginação
-  const fetchProducts = async (page) => {
-    try {
-      const response = await fetch(
-        `http://localhost:3000/products?page=${page}`
-      );
-      const data = await response.json();
-      setProducts(data.products);
-      setTotalPages(data.totalPages); // Assumindo que seu backend retorna totalPages
-      setCurrentPage(page);
-    } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
-      setProducts([]);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts(currentPage);
-  }, [currentPage]);
 
   if (!isAdmin) {
     return <p>Carregando...</p>;
   }
 
   return (
-    <Container>
-      <Nav>
-        <Box>
-          <Logo>
-            <img src={logo} alt="Logo" />
-          </Logo>
-          <h1>Área do Administrador</h1>
-        </Box>
-        <Box>
-          <h1>Olá, Richard</h1>
-          <StyledIoExit onClick={handleLogout} />
-        </Box>
-      </Nav>
-      <ContainerPanel>
-        <BoxPanel>
-          <Header>
-            <TitlePanel>Painel de Notícias</TitlePanel>
-            <Button onClick={() => setOpenModal(true)}>
-              <p>Nova Postagem</p>
-              <StyledIoAddCircle />
-            </Button>
-            <ModalBase
-              isOpen={openModal}
-              setOpenModal={() => setOpenModal(!openModal)}
-            >
-              <CreatePost />
-            </ModalBase>
-          </Header>
-          <PostItem />
-        </BoxPanel>
-
-        <BoxPanel>
-          <Header>
-            <TitlePanel>Painel de Produtos</TitlePanel>
-            <Button onClick={() => setOpenModalPr(true)}>
-              <p>Novo Produto</p>
-              <StyledIoAddCircle />
-            </Button>
-            <ModalBase
-              isOpen={openModalPr}
-              setOpenModal={() => setOpenModalPr(!openModalPr)}
-            >
-              <CreateProduct />
-            </ModalBase>
-          </Header>
-          <ProductItemContainer>
-            <ProductItem
-              products={products}
-              showAddToCart={false}
-              showDeleteButton={true}
-            />
-          </ProductItemContainer>
-
-          {/* Paginação */}
-          <Pagination>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationButton
-                key={index + 1}
-                onClick={() => fetchProducts(index + 1)}
-                $active={index + 1 === currentPage}
-              >
-                {index + 1}
-              </PaginationButton>
-            ))}
-          </Pagination>
-        </BoxPanel>
-      </ContainerPanel>
-    </Container>
+    <>
+      <NavbarAdm />
+      <DashboardContainer>
+        <h2>Dashboard</h2>
+        <Description>
+          Aqui você pode visualizar as principais estatísticas da plataforma,
+          como a quantidade de <strong>usuários cadastrados</strong>,{" "}
+          <strong>produtos</strong>, <strong>notícias</strong> e{" "}
+          <strong>pedidos realizados</strong>.
+        </Description>
+        <DashboardStats>
+          <StatCard>
+            <h3>Usuários Cadastrados</h3>
+            <p>{dashboardData.usuarios}</p>
+          </StatCard>
+          <StatCard>
+            <h3>Produtos Cadastrados</h3>
+            <p>{dashboardData.produtos}</p>
+          </StatCard>
+          <StatCard>
+            <h3>Notícias Publicadas</h3>
+            <p>{dashboardData.noticias}</p>
+          </StatCard>
+          <StatCard>
+            <h3>Pedidos Realizados</h3>
+            <p>{dashboardData.pedidos}</p>
+          </StatCard>
+        </DashboardStats>
+      </DashboardContainer>
+    </>
   );
 }
 

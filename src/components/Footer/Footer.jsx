@@ -21,11 +21,11 @@ function Footer() {
           <Contact>
             <FaInstagram style={{ marginRight: "0.5rem" }} />
             <a
-              href="https://www.instagram.com/lasalletartresin/"
+              href="https://www.instagram.com/claragemma001/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              claraegemm@
+              claragemma001
             </a>
           </Contact>
           <Contact>

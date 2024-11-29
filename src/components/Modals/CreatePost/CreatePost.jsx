@@ -46,7 +46,7 @@ function CreatePost() {
   return (
     <Container>
       <Form>
-        <h1>Nova Postagem</h1>
+        <h1>Entre com as informações do novo produto</h1>
         <InputField>
           <Input
             name="title"
@@ -55,7 +55,6 @@ function CreatePost() {
             ref={inputTitle}
           />
         </InputField>
-
         <InputField>
           <TextArea
             name="desc"
@@ -64,7 +63,6 @@ function CreatePost() {
             ref={inputDesc}
           />
         </InputField>
-
         <InputField>
           <Input
             name="image"
@@ -80,7 +78,6 @@ function CreatePost() {
           />
           <FileInputLabel htmlFor="image">Adicionar imagem</FileInputLabel>
         </InputField>
-
         {selectedImage && (
           <ImageWrapper>
             <Image src={selectedImage} />
@@ -89,7 +86,8 @@ function CreatePost() {
             </CloseButton>
           </ImageWrapper>
         )}
-        <Button type="button" onClick={createPosts}>
+        <div className="hr"></div>
+        <Button className="submit-button" type="button" onClick={createPosts}>
           Postar
         </Button>
       </Form>

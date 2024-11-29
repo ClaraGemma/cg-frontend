@@ -1,127 +1,49 @@
 import styled from "styled-components";
-import { IoExit, IoAddCircle } from "react-icons/io5";
 
-export const Container = styled.div`
-  background-color: #404040; /* Fundo atualizado */
-  min-height: 100vh;
+export const DashboardContainer = styled.div`
+  padding: 30px;
+  background-color: #f4f4f9;
+  font-family: "Roboto", sans-serif;
 `;
 
-export const Nav = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 2em;
-  border-bottom: 1px solid #666;
+export const DashboardStats = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 30px;
 `;
 
-export const Box = styled.div`
-  align-items: center;
-  display: flex;
-
-  h1 {
-    padding: 0 30px;
-    color: #f0f0f0;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-size: 23px;
-  }
-`;
-
-export const ContainerPanel = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const Logo = styled.li`
-  list-style: none;
-`;
-
-export const StyledIoExit = styled(IoExit)`
-  font-size: 25px;
-  color: #f05454;
-  cursor: pointer;
+export const StatCard = styled.div`
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
 
   &:hover {
-    color: #ff3333;
+    transform: scale(1.05);
   }
-`;
 
-export const BoxPanel = styled.div`
-  background-color: #333;
-  width: 75%;
-  border-radius: 5px;
-  padding: 1em;
-  margin: 20px 0;
-
-  /* Limita a altura do BoxPanel e permite rolagem */
-  max-height: 700px; /* Definindo o limite máximo de altura */
-  overflow-y: auto; /* Ativa o scroll vertical quando o conteúdo ultrapassar a altura */
-`;
-
-export const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-`;
-
-export const TitlePanel = styled.h1`
-  font-family: "Livvic", sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  color: #ffffff;
-`;
-
-export const Button = styled.button`
-  display: flex;
-  align-items: center;
-  background-color: #f05454;
-  border: none;
-  border-radius: 8px;
-  padding: 8px 16px;
-  color: #ffffff;
-  cursor: pointer;
-  transition: 0.3s;
-  font-family: "Livvic", sans-serif;
-
-  &:hover {
-    background-color: #ff3333;
+  h3 {
+    margin-bottom: 12px;
+    color: #333;
+    font-size: 1.2em;
   }
 
   p {
-    margin-right: 8px;
-    font-size: 14px;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #f66f00;
   }
 `;
 
-export const StyledIoAddCircle = styled(IoAddCircle)`
-  font-size: 20px;
-`;
-
-export const ProductItemContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  justify-content: center; /* Centraliza os itens */
-  padding: 10px 0;
-`;
-
-export const Pagination = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-`;
-
-export const PaginationButton = styled.button`
-  background: ${(props) => (props.$active ? "#f66f00" : "#fff")};
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px 16px;
-  margin: 0 4px;
-  cursor: pointer;
-  color: ${(props) => (props.$active ? "#fff" : "#f66f00")};
-
-  &:hover {
-    background: ${(props) => !props.$active && "#f1f1f1"};
-  }
+export const Description = styled.p`
+  margin-top: 15px;
+  font-size: 1.1em;
+  color: #555;
+  text-align: center;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
 `;

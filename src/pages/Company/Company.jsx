@@ -48,6 +48,46 @@ function Empresa() {
               para você!
             </p>
           </Section>
+
+          <Section>
+            <Header>
+              <h1>Termos de Uso e Privacidade</h1>
+              <hr />
+            </Header>
+            <p>
+              Para mais informações sobre como utilizamos seus dados e nossos
+              compromissos com a sua privacidade, acesse os documentos abaixo:
+            </p>
+            <ul>
+              <li>
+                <a
+                  href="/TERMOS DE USO.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Termos de Uso
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/POLÍTICA DE PRIVACIDADE.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Política de Privacidade
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/POLÍTICA DE TROCA E DEVOLUÇÃO.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Política de Troca e Devolução
+                </a>
+              </li>
+            </ul>
+          </Section>
         </ContentWrapper>
       </MainContainer>
       <Footer />

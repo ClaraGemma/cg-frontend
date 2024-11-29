@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: "Livvic", sans-serif; /* Aplicando a fonte Livvic */
+  font-family: "Livvic", sans-serif;
 `;
 
 export const List = styled.div`
@@ -14,6 +14,7 @@ export const List = styled.div`
   justify-content: space-around;
   align-items: flex-start;
   margin: 2rem 0;
+  padding: 5em 4em 0 4em;
   width: 100%;
   max-width: 1200px;
   gap: 2rem;

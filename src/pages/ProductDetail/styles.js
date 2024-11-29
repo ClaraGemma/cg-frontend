@@ -51,6 +51,13 @@ export const ProductPrice = styled.p`
   font-weight: bold;
   margin-bottom: 20px;
   font-family: "Poppins", sans-serif; /* Adicionando a fonte Poppins */
+
+  .unit-text {
+    font-size: 12px;
+    color: #666;
+    margin-left: 4px;
+    font-weight: normal;
+  }
 `;
 
 export const ColorOptions = styled.div`

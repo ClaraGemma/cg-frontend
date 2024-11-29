@@ -31,7 +31,7 @@ function ProfileUser() {
       const response = await fetch("http://localhost:3000/user", {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Supondo que você armazena o token no localStorage
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 

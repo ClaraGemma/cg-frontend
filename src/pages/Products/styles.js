@@ -15,16 +15,19 @@ export const SearchInput = styled.input`
   width: 100%;
   padding: 12px 20px;
   padding-right: 50px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
   font-size: 16px;
-  font-family: "Poppins", sans-serif; /* Fonte do input */
+  font-size: 16px;
   outline: none;
-  transition: all 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+
+  &::placeholder {
+    color: #888;
+  }
 
   &:focus {
     border-color: #f66f00;
-    box-shadow: 0 0 5px rgba(255, 149, 62, 1);
   }
 `;
 

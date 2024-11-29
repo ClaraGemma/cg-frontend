@@ -16,6 +16,7 @@ import api from "../../services/api";
 function Products() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -31,8 +32,22 @@ function Products() {
     }
   };
 
+  const fetchProducts = async (page) => {
+    try {
+      const response = await fetch(`http://localhost:3000/products`);
+      const data = await response.json();
+      setProducts(data.products);
+      setTotalPages(data.totalPages); // Assumindo que seu backend retorna totalPages
+      setCurrentPage(page);
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
+      setProducts([]);
+    }
+  };
+
   useEffect(() => {
     handleSearch();
+    fetchProducts();
   }, []);
 
   const handleKeyDown = (e) => {
@@ -62,7 +77,7 @@ function Products() {
         </SearchIconWrapper>
       </SearchBar>
       <ProductItemContainer>
-        <ProductItem products={filteredProducts} />
+        <ProductItem products={searchQuery ? filteredProducts : products} />
       </ProductItemContainer>
       <Pagination>
         {[...Array(totalPages).keys()].map((page) => (
