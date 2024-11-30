@@ -1,12 +1,10 @@
 import { Formik } from "formik";
 import * as yup from "yup";
-import logo from "../../assets/logo_navbar.svg";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api.js";
 
 import {
   Body,
-  Container,
   StyledForm,
   LoginFormGroup,
   StyledField,
@@ -51,53 +49,42 @@ function Login() {
 
   return (
     <Body>
-      <Container>
-        <div className="form-container">
-          <Formik
-            initialValues={{ email: "", password: "" }}
-            onSubmit={handleClickLogin}
-            validationSchema={validationLogin}
-          >
-            <StyledForm>
-              <h1>Login</h1>
-              <p>Entre com sua conta abaixo</p>
-              <LoginFormGroup>
-                <StyledField name="email" type="text" placeholder="E-mail" />
-                <StyledFaUser />
+      <div className="form-container">
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={handleClickLogin}
+          validationSchema={validationLogin}
+        >
+          <StyledForm>
+            <h1>Login</h1>
+            <p>Entre com sua conta abaixo</p>
+            <LoginFormGroup>
+              <StyledField name="email" type="text" placeholder="E-mail" />
+              <StyledFaUser />
+              <StyledErrorMessage component="span" name="email" />
+            </LoginFormGroup>
 
-                <StyledErrorMessage component="span" name="email" />
-              </LoginFormGroup>
+            <LoginFormGroup>
+              <StyledField
+                name="password"
+                type="password"
+                placeholder="Senha"
+              />
+              <StyledFaLock />
+              <StyledErrorMessage component="span" name="password" />
+            </LoginFormGroup>
 
-              <LoginFormGroup>
-                <StyledField
-                  name="password"
-                  type="password"
-                  placeholder="Senha"
-                />
-                <StyledFaLock />
+            <Button type="submit">Entrar</Button>
 
-                <StyledErrorMessage component="span" name="password" />
-              </LoginFormGroup>
-
-              <Button type="submit">Entrar</Button>
-
-              <p className="register-link">
-                Não possui uma conta?{" "}
-                <Link className="register" to="/registrar">
-                  Registre-se aqui!
-                </Link>
-              </p>
-            </StyledForm>
-          </Formik>
-        </div>
-        <div className="phrase-column">
-          <img src={logo} alt="Clara & Gemma" />
-          <p>
-            Artesanato em resina que transforma momentos em peças únicas e
-            inesquecíveis!
-          </p>
-        </div>
-      </Container>
+            <p className="register-link">
+              Não possui uma conta?{" "}
+              <Link className="register" to="/registrar">
+                Registre-se aqui!
+              </Link>
+            </p>
+          </StyledForm>
+        </Formik>
+      </div>
     </Body>
   );
 }

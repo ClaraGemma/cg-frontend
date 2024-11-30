@@ -37,7 +37,7 @@ function Products() {
       const response = await fetch(`http://localhost:3000/products`);
       const data = await response.json();
       setProducts(data.products);
-      setTotalPages(data.totalPages); // Assumindo que seu backend retorna totalPages
+      setTotalPages(data.totalPages);
       setCurrentPage(page);
     } catch (error) {
       console.error("Erro ao buscar produtos:", error);
@@ -77,7 +77,10 @@ function Products() {
         </SearchIconWrapper>
       </SearchBar>
       <ProductItemContainer>
-        <ProductItem products={searchQuery ? filteredProducts : products} />
+        <ProductItem
+          products={searchQuery ? filteredProducts : products}
+          filterQuery={searchQuery}
+        />
       </ProductItemContainer>
       <Pagination>
         {[...Array(totalPages).keys()].map((page) => (

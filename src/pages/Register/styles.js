@@ -13,58 +13,19 @@ export const Body = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-
-export const Container = styled.div`
-  position: relative;
-  display: flex;
-  width: 80%;
-  height: 80%;
-  max-width: 1100px;
-  background-color: rgba(255, 166, 94, 0.9);
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
 
   .form-container {
     position: relative;
-    width: 50%;
+    width: 30%;
     padding: 70px;
     padding-top: 120px;
     margin: 0;
-    top: 50px;
+    top: -90px;
     background-color: #fff1df;
-    right: 20px;
-    z-index: 1;
     border-top-right-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-
-  .phrase-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    text-align: center;
-    flex: 1;
-    padding: 20px;
-  }
-
-  .phrase-column p {
-    margin-bottom: 20px; /* Ajuste a distância entre o texto e a imagem */
-    font-size: 25px;
-    font-weight: 500;
-    font-family: "Pangolin", cursive;
-  }
-
-  .phrase-column img {
-    width: 60%;
-    height: auto;
-    margin: 8em 0 2em 0;
   }
 `;
 

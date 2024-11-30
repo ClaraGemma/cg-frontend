@@ -12,8 +12,7 @@ const OrderAdm = () => {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(""); // Estado para o filtro de protocolo
-
+  const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -94,7 +93,7 @@ const OrderAdm = () => {
           type="text"
           placeholder="Pesquisar por protocolo"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)} // Atualiza o estado da consulta
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
 
         {orders.length === 0 ? (

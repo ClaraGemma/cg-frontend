@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import vermelha from "../../assets/vermelha.webp";
 import { useNavigate } from "react-router-dom"; // Importa o useNavigate
 import {
   ProductCard,
@@ -17,14 +18,18 @@ const ProductItem = ({
   products,
   showAddToCart = true,
   showDeleteButton = false,
+  filterQuery = "",
 }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [productList, setProductList] = useState(products);
 
   useEffect(() => {
-    setProductList(products);
-  }, [products]);
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(filterQuery.toLowerCase())
+    );
+    setProductList(filteredProducts);
+  }, [products, filterQuery]);
 
   const handleAddToCart = async (productId) => {
     console.log("Adicionando produto com ID:", productId);
@@ -102,18 +107,11 @@ const ProductItem = ({
     <>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {productList.map((product) => {
-        // Verifica a primeira imagem da variação
-        const firstColor = product.colors?.[0];
-        const imageUrl = firstColor?.image_url
-          ? `http://localhost:3000${firstColor.image_url}`
-          : "https://via.placeholder.com/150"; // Placeholder caso não tenha imagem
+        const imageUrl = product.defaultImage
+          ? `http://localhost:3000${product.defaultImage}` // Usar a URL enviada pelo backend
+          : vermelha; // Placeholder caso não tenha imagem
 
-        // Calcula o menor preço entre os tamanhos
-        const lowestPrice =
-          product.sizes?.reduce(
-            (min, size) => (size.price < min ? size.price : min),
-            Infinity
-          ) || 0;
+        const price = 7; // Usar o preço enviado pelo backend ou 0 como fallback
 
         return (
           <ProductCard key={product.id}>
@@ -136,7 +134,7 @@ const ProductItem = ({
                 </ProductDesc>
               </div>
               <ProductPriceContainer>
-                <ProductPrice>R$ {lowestPrice.toFixed(2)}</ProductPrice>
+                <ProductPrice>R$ {price.toFixed(2)}</ProductPrice>
                 <div>
                   {showAddToCart && (
                     <AddToCartButton
@@ -179,6 +177,7 @@ ProductItem.propTypes = {
   ).isRequired,
   showAddToCart: PropTypes.bool,
   showDeleteButton: PropTypes.bool,
+  filterQuery: PropTypes.string,
 };
 
 export default ProductItem;
